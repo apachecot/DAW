@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Texto a tres columnas con HTML5 y CSS3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css" type="text/css" media="all">
+    </head>
+    <body>
+        <div class="three-columns">
+            <p>
+                <b>Conceptos</b>
+            </p>
+            <p>
+                <b>Ejemplo del codigo</b>
+            </p>
+		<p>
+			<b>Resultado</b>
+		</p>
+        </div>
+	<div class="three-columns">
+            <p>
+                <b>Variables</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+					<script>
+				var x = 5;
+				var y = 6;
+				var z = 4.3;
+				var mostrar = "";
+				//Suma variables
+				mostrar="Suma de variables: "+(x+y)+"<br>";
+				//Multiplicacion variables
+				mostrar="Multiplicacion de variables: "+(x*y)+"<br>";
+				//Concatenar variables
+				mostrar= mostrar+"Suma variables concatenadas "+x+y+"<br>";
+				//Suma de floats
+				mostrar=mostrar+"Suma floats "+(z+y+x)+"<br>";
+				document.getElementById("variables").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="variables">
+				<script>
+				var x = 5;
+				var y = 6;
+				var z = 4.3;
+				var mostrar = "";
+				//Suma variables
+				mostrar="Suma de variables: "+(x+y)+"<br>";
+				//Multiplicacion variables
+				mostrar="Multiplicacion de variables: "+(x*y)+"<br>";
+				//Concatenar variables
+				mostrar= mostrar+"Suma variables concatenadas "+x+y+"<br>";
+				//Suma de floats
+				mostrar=mostrar+"Suma floats "+(z+y+x)+"<br>";
+				document.getElementById("variables").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		<div class="three-columns">
+            <p>
+                <b>Data types</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var mostrar = "";
+				//Tipo integer
+				mostrar="El formato de 7 es "+ typeof 7 +"<br>";
+				//Tipo string
+				mostrar=mostrar+"El formato de 'Alex' es "+ typeof "Alex" +"<br>";
+				//Tipo boolean
+				mostrar= mostrar+"El formato de 'true' es "+ typeof false +"<br>";
+				//Tipo objeto
+				mostrar=mostrar+"El formato de [1,2,3,4,5] es "+ typeof [1,2,3,4,5] +"<br>";
+				document.getElementById("tipos").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="tipos">
+				<script>
+				var mostrar = "";
+				//Tipo integer
+				mostrar="El formato de 7 es "+ typeof 7 +"<br>";
+				//Tipo string
+				mostrar=mostrar+"El formato de 'Alex' es "+ typeof "Alex" +"<br>";
+				//Tipo boolean
+				mostrar= mostrar+"El formato de 'true' es "+ typeof false +"<br>";
+				//Tipo objeto
+				mostrar=mostrar+"El formato de [1,2,3,4,5] es "+ typeof [1,2,3,4,5] +"<br>";
+				document.getElementById("tipos").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		
+		<div class="three-columns">
+            <p>
+                <b>Objects</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var usuario = {nombre:"Alex", edad:25, pass:"5927kowl", email:"blabla@gmail.com" };
+				var mostrar = "";
+				//Tipo integer
+				mostrar="Información del usuario "+ usuario.nombre +", su email de contacto es "+ usuario.email+", su edad es "+usuario.edad+
+				", y su contraseña es "+usuario.pass;
+				document.getElementById("objetos").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="objetos">
+				<script>
+				var usuario = {nombre:"Alex", edad:25, pass:"5927kowl", email:"blabla@gmail.com" };
+				var mostrar = "";
+				//Tipo integer
+				mostrar="Información del usuario "+ usuario.nombre +", su email de contacto es "+ usuario.email+", su edad es "+usuario.edad+
+				", y su contraseña es "+usuario.pass;
+				document.getElementById("objetos").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		
+		<div class="three-columns">
+            <p>
+                <b>Functions</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var mostrar = "";
+				function devolverfecha()
+				{
+					return Date();
+				}
+				//Tipo integer
+				mostrar=devolverfecha();
+				document.getElementById("funciones").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="funciones">
+				<script>
+				var mostrar = "";
+				//Funcion que devuelve la fecha actual
+				function devolverfecha()
+				{
+					return Date();
+				}
+				//Tipo integer
+				mostrar=devolverfecha();
+				document.getElementById("funciones").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+    </body>
+</html>

@@ -135,7 +135,7 @@
 				{
 					return Date();
 				}
-				//Tipo integer
+				//Llamamos a la funcion devolverfecha
 				mostrar=devolverfecha();
 				document.getElementById("funciones").innerHTML = mostrar;
 				</script>
@@ -149,9 +149,322 @@
 				{
 					return Date();
 				}
-				//Tipo integer
+				//Llamamos a la funcion devolverfecha
 				mostrar=devolverfecha();
 				document.getElementById("funciones").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		
+		<div class="three-columns">
+            <p>
+                <b>Operators</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var x=6;
+				var y=19;
+				var z=1.53;
+				var mostrar = "";
+				//Incrementar
+				mostrar="Incrementar variable X: "+(++x)+"<br>";
+				//Suma
+				mostrar=mostrar+"Suma de variables X+Y: "+(x+y)+"<br>";
+				//Resta
+				mostrar=mostrar+"Resta de variables X-Y: "+(x-y)+"<br>";
+				//Multiplicacion
+				mostrar=mostrar+"Multiplicacion de variables X*Z: "+(x*z)+"<br>";
+				//Division
+				mostrar=mostrar+"Division de variables X/Y: "+(x/y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X mas pequeño que Y? : "+(x<y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X e Y son iguales? : "+(x==y)+"<br>";
+				document.getElementById("operadores").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="operadores">
+				<script>
+				var x=6;
+				var y=19;
+				var z=1.53;
+				var mostrar = "";
+				//Incrementar
+				mostrar="Incrementar variable X: "+(++x)+"<br>";
+				//Suma
+				mostrar=mostrar+"Suma de variables X+Y: "+(x+y)+"<br>";
+				//Resta
+				mostrar=mostrar+"Resta de variables X-Y: "+(x-y)+"<br>";
+				//Multiplicacion
+				mostrar=mostrar+"Multiplicacion de variables X*Z: "+(x*z)+"<br>";
+				//Division
+				mostrar=mostrar+"Division de variables X/Y: "+(x/y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X mas pequeño que Y? : "+(x<y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X e Y son iguales? : "+(x==y)+"<br>";
+				document.getElementById("operadores").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		
+		<div class="three-columns">
+            <p>
+                <b>Comparasions</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var w=19;
+				var x=6;
+				var y=19;
+				var z=1.53;
+				var xy="hola";
+				var mostrar = "";
+				//Comparacion
+				mostrar="Comparacion de las variables X mas pequeño que Y? : "+(x<y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X e Y son iguales? : "+(x==y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables W e Y son iguales? : "+(w==y)+"<br>";
+				//Comparacion de tipos
+				mostrar=mostrar+"Comparacion el tipo de variables de W e XY son iguales? : "+(w===xy)+"<br>";
+				//Comparacion entre variables
+				mostrar=mostrar+"Comparacion de tipo y contenido de las variables W y XY? : "+(w==xy && w==xy)+"<br>";
+				document.getElementById("comparadores").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="comparadores">
+				<script>
+				var w=19;
+				var x=6;
+				var y=19;
+				var z=1.53;
+				var xy="hola";
+				var mostrar = "";
+				//Comparacion
+				mostrar="Comparacion de las variables X mas pequeño que Y? : "+(x<y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables X e Y son iguales? : "+(x==y)+"<br>";
+				//Comparacion
+				mostrar=mostrar+"Comparacion de las variables W e Y son iguales? : "+(w==y)+"<br>";
+				//Comparacion de tipos
+				mostrar=mostrar+"Comparacion el tipo de variables de W e XY son iguales? : "+(w===xy)+"<br>";
+				//Comparacion entre variables
+				mostrar=mostrar+"Comparacion de tipo y contenido de las variables W y XY? : "+(w==xy && w==xy)+"<br>";
+				document.getElementById("comparadores").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		<div class="three-columns">
+            <p>
+                <b>Conditions</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var w=19;
+				var x=6;
+				var z=18;
+				var mostrar = "";
+				if( w<=6)
+				{
+					//Mostrar if
+					mostrar="Ha entrado en el primer if comprobando que W es más pequeño o igual que X<br>";
+				}
+				else if (x>=z)
+				{
+					//Mostrar else if
+					mostrar="Ha entrado en el else if comprobando que X es más grande que W<br>";
+				}
+				else if(w>=z)
+				{
+					//Mostrar 2 else if
+					mostrar="Ha entrado en el else comprobando que W es más grande que Z<br>";
+				}
+				else
+				{
+					//Mostrar else final
+					mostrar="Ha entrado en el else comprobando que Z es más grande que W<br>";
+				}
+				document.getElementById("condiciones").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="condiciones">
+				<script>
+				var w=19;
+				var x=6;
+				var z=18;
+				var mostrar = "";
+				if( w<=6)
+				{
+					//Mostrar if
+					mostrar="Ha entrado en el primer if comprobando que W es más pequeño o igual que X<br>";
+				}
+				else if (x>=z)
+				{
+					//Mostrar else if
+					mostrar="Ha entrado en el else if comprobando que X es más grande que W<br>";
+				}
+				else if(w>=z)
+				{
+					//Mostrar 2 else if
+					mostrar="Ha entrado en el else comprobando que W es más grande que Z<br>";
+				}
+				else
+				{
+					//Mostrar else final
+					mostrar="Ha entrado en el else comprobando que Z es más grande que W<br>";
+				}
+				document.getElementById("condiciones").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		<div class="three-columns">
+            <p>
+                <b>Switch</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				//Creamos X con un numero aleatorio de 0 a 5
+				var x=Math.floor(Math.random() * (5-0+1)) + 0;
+				var mostrar = "";
+				switch (x)
+				{
+					case 0:
+					//X=0
+					mostrar="La variable X vale 0<br>";
+					break;
+					case 1:
+					//X=1
+					mostrar="La variable X vale 1<br>";
+					break;
+					case 2:
+					//X=2
+					mostrar="La variable X vale 2 <br>";
+					break;
+					case 3:
+					//X=3
+					mostrar="La variable X vale 3<br>";
+					break;
+					case 4:
+					//X=4
+					mostrar="La variable X vale 4<br>";
+					break;
+					default:
+					//X=5
+					mostrar="La variable X vale 5<br>";
+				}
+				
+				document.getElementById("switch").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="switch">
+				<script>
+				//Creamos X con un numero aleatorio de 0 a 5
+				var x=Math.floor(Math.random() * (5-0+1)) + 0;
+				var mostrar = "";
+				switch (x)
+				{
+					case 0:
+					//X=0
+					mostrar="La variable X vale 0<br>";
+					break;
+					case 1:
+					//X=1
+					mostrar="La variable X vale 1<br>";
+					break;
+					case 2:
+					//X=2
+					mostrar="La variable X vale 2 <br>";
+					break;
+					case 3:
+					//X=3
+					mostrar="La variable X vale 3<br>";
+					break;
+					case 4:
+					//X=4
+					mostrar="La variable X vale 4<br>";
+					break;
+					default:
+					//X=5
+					mostrar="La variable X vale 5<br>";
+				}
+				
+				document.getElementById("switch").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		<div class="three-columns">
+            <p>
+                <b>Loop for</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				
+				var mostrar = "Recuento hasta 10: <br>";
+				//Hacemos un for que cuente hasta 10
+				for(i=0; i<=10;i++)
+				{
+					mostrar +=i+"<br>";
+				}
+				
+				document.getElementById("for").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="for">
+				<script>
+				//Creamos X con un numero aleatorio de 0 a 5
+				var mostrar = "Recuento hasta 10: <br>";
+				//Hacemos un for que cuente hasta 10
+				for(i=0; i<=10;i++)
+				{
+					mostrar +=i+"<br>";
+				}
+				document.getElementById("for").innerHTML = mostrar;
+				</script>
+			</p>
+        </div>
+		<div class="three-columns">
+            <p>
+                <b>Loop while</b>
+            </p>
+            <p>
+                <textarea name="textarea" cols="30" rows="25" >
+				<script>
+				var x=Math.floor(Math.random() * (10-0+1)) + 0;
+				var mostrar = "Recuento hasta "+x+": <br>";
+				//Hacemos un recuento hasta el numero que salga aleatorio de 0 a 10
+				var i=1;
+				while(i!=x)
+				{
+					mostrar +=i+"<br>";
+					++i;
+				}
+				document.getElementById("while").innerHTML = mostrar;
+				</script>
+			</textarea>
+            </p>
+			<p id="while">
+				<script>
+				var x=Math.floor(Math.random() * (10-1+1)) + 1;
+				var mostrar = "Recuento hasta "+(x-1)+": <br>";
+				//Hacemos un recuento hasta el numero que salga aleatorio de 0 a 10
+				var i=1;
+				while(i!=x)
+				{
+					mostrar +=i+"<br>";
+					++i;
+				}
+				document.getElementById("while").innerHTML = mostrar;
 				</script>
 			</p>
         </div>

@@ -24,7 +24,10 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
-					<script>
+				<!DOCTYPE html>
+				<html>
+				<body>
+				<script>
 				var x = 5;
 				var y = 6;
 				var z = 4.3;
@@ -39,6 +42,8 @@
 				mostrar=mostrar+"Suma floats "+(z+y+x)+"<br>";
 				document.getElementById("variables").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="variables">
@@ -65,6 +70,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var mostrar = "";
 				//Tipo integer
@@ -77,6 +85,8 @@
 				mostrar=mostrar+"El formato de [1,2,3,4,5] es "+ typeof [1,2,3,4,5] +"<br>";
 				document.getElementById("tipos").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="tipos">
@@ -101,6 +111,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var usuario = {nombre:"Alex", edad:25, pass:"5927kowl", email:"blabla@gmail.com" };
 				var mostrar = "";
@@ -109,6 +122,8 @@
 				", y su contraseña es "+usuario.pass;
 				document.getElementById("objetos").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="objetos">
@@ -129,6 +144,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var mostrar = "";
 				function devolverfecha()
@@ -139,6 +157,8 @@
 				mostrar=devolverfecha();
 				document.getElementById("funciones").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="funciones">
@@ -162,6 +182,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var x=6;
 				var y=19;
@@ -183,6 +206,8 @@
 				mostrar=mostrar+"Comparacion de las variables X e Y son iguales? : "+(x==y)+"<br>";
 				document.getElementById("operadores").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="operadores">
@@ -216,6 +241,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var w=19;
 				var x=6;
@@ -235,6 +263,8 @@
 				mostrar=mostrar+"Comparacion de tipo y contenido de las variables W y XY? : "+(w==xy && w==xy)+"<br>";
 				document.getElementById("comparadores").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="comparadores">
@@ -265,6 +295,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var w=19;
 				var x=6;
@@ -292,6 +325,8 @@
 				}
 				document.getElementById("condiciones").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="condiciones">
@@ -330,6 +365,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				//Creamos X con un numero aleatorio de 0 a 5
 				var x=Math.floor(Math.random() * (5-0+1)) + 0;
@@ -363,6 +401,8 @@
 				
 				document.getElementById("switch").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="switch">
@@ -399,6 +439,7 @@
 				
 				document.getElementById("switch").innerHTML = mostrar;
 				</script>
+				
 			</p>
         </div>
 		<div class="three-columns">
@@ -407,8 +448,10 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
-				
 				var mostrar = "Recuento hasta 10: <br>";
 				//Hacemos un for que cuente hasta 10
 				for(i=0; i<=10;i++)
@@ -418,6 +461,8 @@
 				
 				document.getElementById("for").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="for">
@@ -439,6 +484,9 @@
             </p>
             <p>
                 <textarea name="textarea" cols="30" rows="25" >
+				<!DOCTYPE html>
+				<html>
+				<body>
 				<script>
 				var x=Math.floor(Math.random() * (10-0+1)) + 0;
 				var mostrar = "Recuento hasta "+x+": <br>";
@@ -451,6 +499,8 @@
 				}
 				document.getElementById("while").innerHTML = mostrar;
 				</script>
+				</body>
+				</html>
 			</textarea>
             </p>
 			<p id="while">

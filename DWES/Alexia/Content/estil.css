@@ -1,0 +1,13 @@
+﻿body {
+}
+#PanelMantenimentModuls {
+    min-width: 300px;
+    max-width: 750px;
+    margin: 10px auto 0 auto;
+}
+#PanelGrid {
+    margin: 10px auto 0 auto;
+}
+#GridViewHoteles {
+    margin-top: 10px;
+}

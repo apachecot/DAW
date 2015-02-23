@@ -1,21 +1,126 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <html>
   <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" src="style.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="Events.js"></script>
 	<script type="text/javascript" src="utils.js"></script>
 	<script type="text/javascript" src="Config.js"></script>
 	<script type="text/javascript" src="masterui.js"></script>
 	<script type="text/javascript" src="master.js"></script>
-	<h1>Mastermind</h1>
   </head>
   <body>
-  <div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-primary btn-lg btn-block" onclick="">Empezar a jugar/Dame pistas</button>
+  <div class="row clearfix">
+		<div class="col-md-6 column">
+			<h1>Mastermind</h1>
+		</div>
+		<div class="col-md-2 column">
+		</div>
+		<div class="col-md-4 column">
+			<p>Máximo número de intentos/
+			Número restante de intentos</p>
+			<div id="slider"></div>
+			<p class="numero">5</p>
 		</div>
 	</div>
-	<div name="imagen" id="imagen"></div>
-  </body>
+	<div class="row clearfix caja">
+		<div class="col-md-6 column">
+				<div class="bloque">
+					<div class="linea">
+						<div id="circulo1" class="I circulo"></div>
+					</div>
+					<div  class="linea">
+						<div class="linea">
+							<div id="I" bolapadre="circulo1" class="cuadrado I"></div>
+							<div id="II" bolapadre="circulo1" class="cuadrado II"></div>
+							<div id="III" bolapadre="circulo1" class="cuadrado III"></div>
+						</div>
+						<div class="linea">
+							<div id="IV" bolapadre="circulo1" class="cuadrado IV"></div>
+							<div id="V" bolapadre="circulo1" class="cuadrado V"></div>
+							<div id="VI" bolapadre="circulo1" class="cuadrado VI"></div>
+						</div>
+					</div>
+				</div>
+				<div class="bloque">
+					<div class="linea">
+						<div id="circulo2" class="V circulo"></div>
+					</div>
+					<div  class="linea">
+						<div class="linea">
+							<div id="I" bolapadre="circulo2" class="cuadrado I"></div>
+							<div id="II" bolapadre="circulo2" class="cuadrado II"></div>
+							<div id="III" bolapadre="circulo2" class="cuadrado III"></div>
+						</div>
+						<div class="linea">
+							<div id="IV" bolapadre="circulo2" class="cuadrado IV"></div>
+							<div id="V" bolapadre="circulo2" class="cuadrado V"></div>
+							<div id="VI" bolapadre="circulo2" class="cuadrado VI"></div>
+						</div>
+					</div>
+				</div>
+				<div class="bloque">
+					<div class="linea">
+						<div id="circulo3" class="III circulo"></div>
+					</div>
+					<div  class="linea">
+						<div class="linea">
+							<div id="I" bolapadre="circulo3" class="cuadrado I"></div>
+							<div id="II" bolapadre="circulo3" class="cuadrado II"></div>
+							<div id="III" bolapadre="circulo3" class="cuadrado III"></div>
+						</div>
+						<div class="linea">
+							<div id="IV" bolapadre="circulo3" class="cuadrado IV"></div>
+							<div id="V" bolapadre="circulo3" class="cuadrado V"></div>
+							<div id="VI" bolapadre="circulo3" class="cuadrado VI"></div>
+						</div>
+					</div>
+				</div>
+				<div class="bloque">
+					<div class="linea">
+						<div id="circulo4" class="VI circulo"></div>
+					</div>
+					<div  class="linea">
+						<div class="linea">
+							<div id="I" bolapadre="circulo4" class="cuadrado I"></div>
+							<div id="II" bolapadre="circulo4" class="cuadrado II"></div>
+							<div id="III" bolapadre="circulo4" class="cuadrado III"></div>
+						</div>
+						<div class="linea">
+							<div id="IV" bolapadre="circulo4" class="cuadrado IV"></div>
+							<div id="V" bolapadre="circulo4" class="cuadrado V"></div>
+							<div id="VI" bolapadre="circulo4" class="cuadrado VI"></div>
+						</div>
+					</div>
+				</div>
+				<div class="bloque">
+					<div class="linea">
+						<div id="circulo5" class="no circulo"></div>	
+					</div>
+					<div  class="linea">
+						<div class="linea">
+							<div id="I" bolapadre="circulo5" class="cuadrado I"></div>
+							<div id="II" bolapadre="circulo5" class="cuadrado II"></div>
+							<div id="III" bolapadre="circulo5" class="cuadrado III"></div>
+						</div>
+						<div class="linea">
+							<div id="IV" bolapadre="circulo5" class="cuadrado IV"></div>
+							<div id="V" bolapadre="circulo5" class="cuadrado V"></div>
+							<div id="VI" bolapadre="circulo5" class="cuadrado VI"></div>
+						</div>
+					</div>
+				</div>	
+		</div>
+		<div class="col-md-2 column">
+			<p class="numero">5</p>
+		</div>
+		<div class="col-md-4 column">
+			 <button type="button" class="btn btn-primary btn-lg btn-block" onclick="">Empezar a jugar/Dame pistas</button>
+		</div>
+	</div>
 </html>   

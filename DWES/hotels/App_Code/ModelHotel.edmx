@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hoteles_basicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="hoteles_basicoModelStoreContainer">
+          <EntitySet Name="cadenas" EntityType="hoteles_basicoModel.Store.cadenas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ciudades" EntityType="hoteles_basicoModel.Store.ciudades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="hoteles" EntityType="hoteles_basicoModel.Store.hoteles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="restaurantes" EntityType="hoteles_basicoModel.Store.restaurantes" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_hoteles_cadenas" Association="hoteles_basicoModel.Store.fk_hoteles_cadenas">
+            <End Role="cadenas" EntitySet="cadenas" />
+            <End Role="hoteles" EntitySet="hoteles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_hoteles_ciudades" Association="hoteles_basicoModel.Store.fk_hoteles_ciudades">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="hoteles" EntitySet="hoteles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_restaurantes_hoteles" Association="hoteles_basicoModel.Store.FK_restaurantes_hoteles">
+            <End Role="hoteles" EntitySet="hoteles" />
+            <End Role="restaurantes" EntitySet="restaurantes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cadenas">
+          <Key>
+            <PropertyRef Name="cif" />
+          </Key>
+          <Property Name="cif" Type="varchar" Nullable="false" MaxLength="9" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="dir_fis" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ciudades">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="hoteles">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="categoria" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="telefono" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="cif" Type="varchar" Nullable="false" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="restaurantes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="especialidad" Type="varchar" MaxLength="30" />
+          <Property Name="id_ciudad" Type="int" />
+          <Property Name="nombre_hot" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="fk_hoteles_cadenas">
+          <End Role="cadenas" Type="hoteles_basicoModel.Store.cadenas" Multiplicity="1" />
+          <End Role="hoteles" Type="hoteles_basicoModel.Store.hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cadenas">
+              <PropertyRef Name="cif" />
+            </Principal>
+            <Dependent Role="hoteles">
+              <PropertyRef Name="cif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_hoteles_ciudades">
+          <End Role="ciudades" Type="hoteles_basicoModel.Store.ciudades" Multiplicity="1" />
+          <End Role="hoteles" Type="hoteles_basicoModel.Store.hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="hoteles">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_restaurantes_hoteles">
+          <End Role="hoteles" Type="hoteles_basicoModel.Store.hoteles" Multiplicity="0..1" />
+          <End Role="restaurantes" Type="hoteles_basicoModel.Store.restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoteles">
+              <PropertyRef Name="id_ciudad" />
+              <PropertyRef Name="nombre" />
+            </Principal>
+            <Dependent Role="restaurantes">
+              <PropertyRef Name="id_ciudad" />
+              <PropertyRef Name="nombre_hot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hoteles_basicoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="hoteles_basicoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="cadenas" EntityType="hoteles_basicoModel.cadenas" />
+          <EntitySet Name="ciudades" EntityType="hoteles_basicoModel.ciudades" />
+          <EntitySet Name="hoteles" EntityType="hoteles_basicoModel.hoteles" />
+          <AssociationSet Name="fk_hoteles_cadenas" Association="hoteles_basicoModel.fk_hoteles_cadenas">
+            <End Role="cadenas" EntitySet="cadenas" />
+            <End Role="hoteles" EntitySet="hoteles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_hoteles_ciudades" Association="hoteles_basicoModel.fk_hoteles_ciudades">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="hoteles" EntitySet="hoteles" />
+          </AssociationSet>
+          <EntitySet Name="restaurantes" EntityType="hoteles_basicoModel.restaurantes" />
+          <AssociationSet Name="FK_restaurantes_hoteles" Association="hoteles_basicoModel.FK_restaurantes_hoteles">
+            <End Role="hoteles" EntitySet="hoteles" />
+            <End Role="restaurantes" EntitySet="restaurantes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cadenas">
+          <Key>
+            <PropertyRef Name="cif" />
+          </Key>
+          <Property Name="cif" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dir_fis" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="hoteles" Relationship="hoteles_basicoModel.fk_hoteles_cadenas" FromRole="cadenas" ToRole="hoteles" />
+        </EntityType>
+        <EntityType Name="ciudades">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="hoteles" Relationship="hoteles_basicoModel.fk_hoteles_ciudades" FromRole="ciudades" ToRole="hoteles" />
+        </EntityType>
+        <EntityType Name="hoteles">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="categoria" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="telefono" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="cif" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="cadenas" Relationship="hoteles_basicoModel.fk_hoteles_cadenas" FromRole="hoteles" ToRole="cadenas" />
+          <NavigationProperty Name="ciudades" Relationship="hoteles_basicoModel.fk_hoteles_ciudades" FromRole="hoteles" ToRole="ciudades" />
+          <NavigationProperty Name="restaurantes" Relationship="hoteles_basicoModel.FK_restaurantes_hoteles" FromRole="hoteles" ToRole="restaurantes" />
+        </EntityType>
+        <Association Name="fk_hoteles_cadenas">
+          <End Role="cadenas" Type="hoteles_basicoModel.cadenas" Multiplicity="1" />
+          <End Role="hoteles" Type="hoteles_basicoModel.hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cadenas">
+              <PropertyRef Name="cif" />
+            </Principal>
+            <Dependent Role="hoteles">
+              <PropertyRef Name="cif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_hoteles_ciudades">
+          <End Role="ciudades" Type="hoteles_basicoModel.ciudades" Multiplicity="1" />
+          <End Role="hoteles" Type="hoteles_basicoModel.hoteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="hoteles">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="restaurantes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="especialidad" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="id_ciudad" />
+          <Property Type="String" Name="nombre_hot" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="hoteles" Relationship="hoteles_basicoModel.FK_restaurantes_hoteles" FromRole="restaurantes" ToRole="hoteles" />
+        </EntityType>
+        <Association Name="FK_restaurantes_hoteles">
+          <End Type="hoteles_basicoModel.hoteles" Role="hoteles" Multiplicity="0..1" />
+          <End Type="hoteles_basicoModel.restaurantes" Role="restaurantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoteles">
+              <PropertyRef Name="id_ciudad" />
+              <PropertyRef Name="nombre" />
+            </Principal>
+            <Dependent Role="restaurantes">
+              <PropertyRef Name="id_ciudad" />
+              <PropertyRef Name="nombre_hot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hoteles_basicoModelStoreContainer" CdmEntityContainer="hoteles_basicoEntities">
+          <EntitySetMapping Name="cadenas">
+            <EntityTypeMapping TypeName="hoteles_basicoModel.cadenas">
+              <MappingFragment StoreEntitySet="cadenas">
+                <ScalarProperty Name="cif" ColumnName="cif" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="dir_fis" ColumnName="dir_fis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudades">
+            <EntityTypeMapping TypeName="hoteles_basicoModel.ciudades">
+              <MappingFragment StoreEntitySet="ciudades">
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoteles">
+            <EntityTypeMapping TypeName="hoteles_basicoModel.hoteles">
+              <MappingFragment StoreEntitySet="hoteles">
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="cif" ColumnName="cif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restaurantes">
+            <EntityTypeMapping TypeName="hoteles_basicoModel.restaurantes">
+              <MappingFragment StoreEntitySet="restaurantes">
+                <ScalarProperty Name="nombre_hot" ColumnName="nombre_hot" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

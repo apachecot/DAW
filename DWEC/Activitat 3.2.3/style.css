@@ -2,8 +2,8 @@
    float:left;
    margin-left:5px;
    border: 2px solid;
-   width: 75px;   
-   height: 75px;
+   width: 60px;   
+   height: 60px;
    -moz-border-radius: 70px; 
    -webkit-border-radius: 70px; 
    border-radius: 70px;
@@ -29,8 +29,11 @@
 .no{
 	background:white;
 }
-#ex1Slider .slider-selection {
-	background: #BABABA;
+.ok{
+	background:green;
+}
+.ko{
+	background:red;
 }
 .caja{
 	border: 2px solid;
@@ -55,5 +58,10 @@
 .bloque
 {
 	display:inline-block;
+}
+#inputText{
+	margin-top:-10px;
+	margin-left:10px;
+	border:2px solid;
 }
 

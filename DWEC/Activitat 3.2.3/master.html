@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="master.js"></script>
   </head>
   <body>
-  <div class="row clearfix">
+  <div class="clearfix">
 		<div class="col-md-6 column">
 			<h1>Mastermind</h1>
 		</div>
@@ -25,7 +25,7 @@
 			<p>Máximo número de intentos/
 			Número restante de intentos</p>
 			<div id="slider"></div>
-			<p class="numero">5</p>
+			<p class="numero">10</p>
 		</div>
 	</div>
 	<div class="row clearfix caja">
@@ -117,10 +117,76 @@
 				</div>	
 		</div>
 		<div class="col-md-2 column">
-			<p class="numero">5</p>
+			<p class="numero">1</p>
 		</div>
 		<div class="col-md-4 column">
-			 <button type="button" class="btn btn-primary btn-lg btn-block" onclick="">Empezar a jugar/Dame pistas</button>
+			 <button id="buttonJugar" type="button" class="btn btn-primary btn-lg btn-block">Empezar a jugar/Dame pistas</button>
 		</div>
 	</div>
+	<form class="clearfix">
+		<input id="inputText" type="text">
+	</form>
+	<div id="resultados">
+		
+	</div>
+	<div id="plantillaResult" class="row clearfix caja">
+		<div class="col-md-6 column">
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloResultado1" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloResultado2" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloResultado3" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloResultado4" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloResultado5" class="no circulo"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1 column">
+			<p class="numero"></p>
+		</div>
+		<div class="col-md-5 column">
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloComprobante1" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloComprobante2" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloComprobante3" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloComprobante4" class="no circulo"></div>
+				</div>
+			</div>
+			<div class="bloque">
+				<div class="linea">
+					<div id="circuloComprobante5" class="no circulo"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </html>   

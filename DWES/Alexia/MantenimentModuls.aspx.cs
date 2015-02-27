@@ -42,9 +42,18 @@ public partial class MantenimentModuls : System.Web.UI.Page
         GridViewModuls.PageIndex = 0;
     }
 
-    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
-    public static string GetDynamicContent(string contextKey)
+    protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        return default(string);
+
+    }
+    protected void btnAceptarEsborrar_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void GridViewModuls_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //Rellenaras los datos.
+
+        ButtonNou_ModalPopupExtender.Show();
     }
 }

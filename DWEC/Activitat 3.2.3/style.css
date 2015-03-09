@@ -1,3 +1,10 @@
+body{
+	background-image: url("back.jpg");
+}
+h1{
+	color: white;
+}
+
 .circulo { 
    float:left;
    margin-left:5px;
@@ -39,9 +46,15 @@
 	border: 2px solid;
 	margin:10px;
 	padding:10px;
+	background: rgba(0, 0, 0, 0.5);
+}
+.text-info{
+	color: white;
+	font-size:12pt;
 }
 .numero{
 	font-size:30pt;
+	color: white;
 }
 .cuadrado {
 	float:left;

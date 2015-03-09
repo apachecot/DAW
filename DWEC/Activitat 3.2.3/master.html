@@ -4,6 +4,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+	<script src="lib/sweet-alert.min.js">
+	</script> <link rel="stylesheet" type="text/css" href="lib/sweet-alert.css">
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
@@ -25,10 +27,10 @@
 			<p>Máximo número de intentos/
 			Número restante de intentos</p>
 			<div id="slider"></div>
-			<p class="numero">10</p>
+			<p id="numeroIntentos" class="numero">10</p>
 		</div>
 	</div>
-	<div class="row clearfix caja">
+	<div id="cajaJuego" class="row clearfix caja">
 		<div id="circulosJuego" class="col-md-6 column">
 				<div class="bloque">
 					<div class="linea">
@@ -120,16 +122,17 @@
 			<p class="numero">1</p>
 		</div>
 		<div class="col-md-4 column">
-			 <button id="buttonJugar" type="button" class="btn btn-primary btn-lg btn-block">Empezar a jugar/Dame pistas</button>
+			 <button id="buttonJugar" type="button" class="btn btn-primary btn-lg btn-block">Empezar a jugar</button>
 		</div>
 	</div>
 	<form class="clearfix">
 		<input id="inputText" type="text">
+		<p id="error" style="display:none" class="error bg-danger">El código es incorrecto</p>
 	</form>
 	<div id="resultados">
 		
 	</div>
-	<div id="plantillaResult" class="row clearfix caja">
+	<div id="plantillaResult" style="display:none" class="row clearfix caja">
 		<div class="col-md-6 column">
 			<div class="bloque">
 				<div class="linea">

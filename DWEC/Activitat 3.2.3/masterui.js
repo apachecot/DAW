@@ -1,13 +1,29 @@
 var masterui = (function () {
 
 		var intentos;
+		var partida_empezada=false;
+		var MAX_INTENTOS;
+		
+
+		function EstadoPartida()
+		{
+			return partida_empezada;
+		}
+		function EmpezarPartida()
+		{
+			partida_empezada=true;
+		}
+		function MaxIntentos()
+		{
+			MAX_INTENTOS=$( "#slider" ).slider( "value" );
+		}
 		
    
 	   function MostrarPistasEnLista() {
 			$( "#plantillaResult" ).clone().attr('id', 'result'+(intentos) ).appendTo( "#resultados" );
 			var codigo=master.GetCodigo().split('');
-			var aciertos=master.cuantasOk($("#inputText").val());
-			var ko=master.cuantasKO($("#inputText").val());
+			var aciertos=master.cuantasOk();
+			var ko=master.cuantasKO();
 			
 			for(i=1;i<6;i++)
 			{
@@ -25,7 +41,7 @@ var masterui = (function () {
 				}
 			}
 			$("#result"+(intentos)).find("p.numero").html(intentos);
-			$("#resultados").children().show();
+			$("#resultados").children().fadeIn("slow");
 	   }
 	   
 	   function BorrarListaPistas() {
@@ -42,17 +58,91 @@ var masterui = (function () {
 			//Contador de intentos central
 			$(".col-md-2.column").find("p.numero").html(intentos+1);
 			//Restador de intentos slider
-			$(".col-md-4.column").find("p.numero").html(10-intentos);
-			$( "#slider" ).slider({value:(10-intentos)});	
+			$(".col-md-4.column").find("p.numero").html(MAX_INTENTOS-intentos);
+			$( "#slider" ).slider({value:(MAX_INTENTOS-intentos)});
+			return (MAX_INTENTOS-intentos);
 	   }
 	   function SetIntentos()
 	   {
 			intentos=0;
 	   }
+	   function GetIntentos()
+	   {
+			return intentos;
+	   }
+	   function CapturarCajaRapida(){
+		
+			  var m = $("#inputText").val();
+			  var expreg = new RegExp("^[0-6]{0,5}$");
+			  
+			  if(expreg.test(m)){
+					TransformarAColores(m);
+					$("#error").hide();
+				}else{
+					$("#error").show();
+				}
+		}
+		function TransformarAColores(codigoColor) {
+		   for(i=0;i<5;i++)
+			{
+				switch(codigoColor.toString()[i])
+				{
+					case "0":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("no circulo");
+					break;
+					case "1":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo I");
+					break;
+					case "2":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo II");
+					break;
+					case "3":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo III");
+					break;
+					case "4":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo IV");
+					break;
+					case "5":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo V");
+					break;
+					case "6":
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("circulo VI");
+					break;
+					default:
+					$("#circulosJuego").find("#circulo"+(i+1)).removeClass().addClass("no circulo");
+					break;
+				}
+			}
+		}
+		function ClickCajas()
+		{
+			circulo=$(this)[0].attributes["bolapadre"].value;
+			$("#"+circulo).removeClass().addClass("circulo").addClass($(this).attr("id"));
+			$("#inputText").val(master.TransformarACodigo);
+		}
+		function SetSlider(){
+			$( "#slider" ).slider({
+			  value:10,
+			  min: 0,
+			  max: 20,
+			  step: 1,
+			  slide: function( event, ui ) {
+				$( "#numeroIntentos" ).text(ui.value);
+			  }
+			});
+			$( "#numeroIntentos" ).text($( "#slider" ).slider( "value" ));
+		}
 	   return {
 		  MostrarPistasEnLista: MostrarPistasEnLista,
 		  BorrarListaPistas: BorrarListaPistas,
 		  ControlIntentos: ControlIntentos,
-		  SetIntentos: SetIntentos
+		  SetIntentos: SetIntentos,
+		  GetIntentos: GetIntentos,
+		  EstadoPartida: EstadoPartida,
+		  EmpezarPartida: EmpezarPartida,
+		  MaxIntentos: MaxIntentos,
+		  CapturarCajaRapida: CapturarCajaRapida,
+		  ClickCajas: ClickCajas,
+		  SetSlider: SetSlider
 	   }
 }());

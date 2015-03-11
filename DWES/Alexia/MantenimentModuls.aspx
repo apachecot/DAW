@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manteniments Moduls Professionals" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="MantenimentModuls.aspx.cs" Inherits="MantenimentModuls" %>
+﻿<%@ Page Title="Manteniments Moduls Professionals" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="MantenimentModuls.aspx.cs" Inherits="MantenimentModuls" enableEventValidation="false" %>
 
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
@@ -69,8 +69,8 @@
                 </div>
                 <div class="panel-body">
                     Estàs segur de que vols esborrar el registre?<br />
-                    <asp:Button ID="btnCerrarEsborrar" runat="server" Text="Cancel·lar" />
-                    <asp:Button ID="btnAceptarEsborrar" runat="server" Text="Aceptar" OnClick="btnAceptarEsborrar_Click" />
+                    <asp:Button ID="btnCerrarEsborrar" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
+                    <asp:Button ID="btnAceptarEsborrar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarEsborrar_Click" />
                 </div>
             </asp:Panel>
             <asp:Panel ID="PanelModalCrear" runat="server" CssClass="panel panel-primary">
@@ -82,11 +82,15 @@
                     <br />
                     <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="id">
                     </asp:DropDownList>
+                    <asp:CascadingDropDown ID="DropDownList2_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList2" UseContextKey="True">
+                    </asp:CascadingDropDown>
                     <br />
                     <asp:Label ID="LabelCursModal" runat="server" Text="Curs"></asp:Label>
                     <br />
                     <asp:DropDownList ID="DropDownList1" runat="server">
                     </asp:DropDownList>
+                    <asp:CascadingDropDown ID="DropDownList1_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList2" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList1" UseContextKey="True">
+                    </asp:CascadingDropDown>
                     <br />
                     <asp:Label ID="LabelModalCodi" runat="server" Text="Codi"></asp:Label>
                     <br />
@@ -109,8 +113,8 @@
                     <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="EntityDataSourceProfessor" DataTextField="nom" DataValueField="id">
                     </asp:DropDownList>
                     <br />
-                    <asp:Button ID="btnCerrarCrear" runat="server" Text="Cancel·lar" />
-                    <asp:Button ID="btnAceptarCrear" runat="server" Text="Aceptar" />
+                    <asp:Button ID="btnCerrarCrear" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
+                    <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" />
                 </div>
             </asp:Panel>
             <!-- ModalPopupExtender -->

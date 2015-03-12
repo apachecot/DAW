@@ -3,6 +3,8 @@ var master = (function () {
 		var MIN=1;
 		var codigo="";
 		var codigoIntento="";
+		var codigoIntentoOk="";
+		var codigoSecretoOk="";
 		var contadorOk;
 		var contadorKO;
 	
@@ -35,11 +37,18 @@ var master = (function () {
    
 	   function cuantasOk() {
 			contadorOk=0;
-			for(i=0;i<5;i++)
+			codigoIntentoOk=codigoIntento;
+			codigoSecretoOk=codigo;
+			i=0;
+			while (i<codigoSecretoOk.length)
 			{
-				if(codigoIntento.toString()[i]==codigo.toString()[i])
+				if(codigoIntentoOk.toString()[i]==codigoSecretoOk.toString()[i])
 				{
 					contadorOk++;
+					codigoIntentoOk=codigoIntentoOk.slice(0, i) + codigoIntentoOk.slice(i+1);
+					codigoSecretoOk=codigoSecretoOk.slice(0, i) + codigoSecretoOk.slice(i+1);
+				}else{
+					i++;
 				}
 			}
 			return contadorOk;
@@ -47,12 +56,15 @@ var master = (function () {
 	   
 	   function cuantasKO() {
 			contadorKO=0;
-			for(i=1;i<7;i++)
+			i=0;
+			while(i<codigoSecretoOk.length)
 			{
-				if(codigo.indexOf(i.toString())!=-1 && codigoIntento.indexOf(i.toString())!=-1)
+				if(codigoIntentoOk.indexOf(codigoSecretoOk[i])!=-1 )
 				{
 					contadorKO++;
+					codigoIntentoOk=codigoIntentoOk.slice(0, i) + codigoIntentoOk.slice(i+1);
 				}
+				i++;
 			}
 			return contadorKO;
 		}
@@ -92,9 +104,14 @@ var master = (function () {
 	     
 	   function generarCodigoOculto() {
 			codigo="";
-			for(i=MIN;i<MAX;i++)
+			if(Config.debug==false)
 			{
-				codigo=codigo.toString()+(Math.floor(Math.random() * (MAX - MIN + 1)) + MIN).toString();
+				for(i=MIN;i<MAX;i++)
+				{
+					codigo=codigo.toString()+(Math.floor(Math.random() * (MAX - MIN + 1)) + MIN).toString();
+				}
+			}else{
+				codigo=Config.codigoPrueba;
 			}
 	   }
 	   function ComprobarEstadoPartida(intentosRestantes)
@@ -137,6 +154,7 @@ var master = (function () {
 	   {
 			return contadorKO;
 	   }
+	   
 	   
 	   return {
 		  generarCodigoOculto: generarCodigoOculto,

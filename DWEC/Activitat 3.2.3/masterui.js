@@ -24,6 +24,7 @@ var masterui = (function () {
 			var codigo=master.GetCodigo().split('');
 			var aciertos=master.cuantasOk();
 			var ko=master.cuantasKO();
+			ko=ko+aciertos;
 			
 			for(i=1;i<6;i++)
 			{

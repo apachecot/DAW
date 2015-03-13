@@ -11,7 +11,7 @@
     <asp:Panel ID="Panel1" runat="server" CssClass="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <asp:Button ID="ButtonNou" CssClass="btn-primary" runat="server" Text="Nou" />
+                <asp:Button ID="ButtonNou" CssClass="btn btn-primary" runat="server" Text="Nou" />
                 <asp:ModalPopupExtender ID="ButtonNou_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" TargetControlID="ButtonNou" PopupControlID="PanelModalCrear">
                 </asp:ModalPopupExtender>
             </h3>
@@ -48,15 +48,15 @@
                                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("id_curs") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("cursos.codi") %>'></asp:Label>
+                                        <asp:Label ID="LabelCodiGrid" runat="server" Text='<%# Eval("cursos.codi") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" Visible="False" />
                                 <asp:BoundField DataField="codi" HeaderText="codi" SortExpression="codi" />
                                 <asp:BoundField DataField="nom" HeaderText="nom" SortExpression="nom" />
-                                <asp:BoundField DataField="hores" HeaderText="hores" SortExpression="hores" Visible="False" />
-                                <asp:BoundField DataField="hores_lliures" HeaderText="hores_lliures" SortExpression="hores_lliures" Visible="False" />
-                                <asp:BoundField DataField="id_professor" HeaderText="id_professor" SortExpression="id_professor" Visible="False" />
+                                <asp:BoundField DataField="hores" HeaderStyle-CssClass="HideCell" ItemStyle-CssClass="HideCell"  HeaderText="hores" SortExpression="hores"/>
+                                <asp:BoundField DataField="hores_lliures" HeaderStyle-CssClass="HideCell" ItemStyle-CssClass="HideCell" HeaderText="hores_lliures" SortExpression="hores_lliures" />
+                                <asp:BoundField DataField="id_professor" HeaderStyle-CssClass="HideCell" ItemStyle-CssClass="HideCell" HeaderText="id_professor" SortExpression="id_professor" />
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -80,41 +80,38 @@
                 <div class="panel-body">
                     <asp:Label ID="LabelCicleModal" runat="server" Text="Cicle"></asp:Label>
                     <br />
-                    <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="id">
+                    <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="id">
                     </asp:DropDownList>
                     <asp:CascadingDropDown ID="DropDownList2_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList2" UseContextKey="True">
                     </asp:CascadingDropDown>
                     <br />
                     <asp:Label ID="LabelCursModal" runat="server" Text="Curs"></asp:Label>
                     <br />
-                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
                     </asp:DropDownList>
                     <asp:CascadingDropDown ID="DropDownList1_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList2" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList1" UseContextKey="True">
                     </asp:CascadingDropDown>
                     <br />
                     <asp:Label ID="LabelModalCodi" runat="server" Text="Codi"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="TextBoxModalCodi" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxModalCodi" CssClass="form-control" runat="server"></asp:TextBox>
                     <br />
                     <asp:Label ID="LabelModalNom" runat="server" Text="Nom"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="TextBoxModalNom" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxModalNom" CssClass="form-control" runat="server"></asp:TextBox>
                     <br />
                     <asp:Label ID="LabelModalHores" runat="server" Text="Hores"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="TextBoxModalHores" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxModalHores" CssClass="form-control" runat="server"></asp:TextBox>
                     <br />
                     <asp:Label ID="LabelModalHoresLliures" runat="server" Text="Hores lliure elecció"></asp:Label>
-                    <br />
-                    <asp:TextBox ID="TextBoxModalHoresLliures" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxModalHoresLliures" CssClass="form-control" runat="server"></asp:TextBox>
                     <br />
                     <asp:Label ID="LabelModalProfesor" runat="server" Text="Profesor"></asp:Label>
                     <br />
-                    <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="EntityDataSourceProfessor" DataTextField="nom" DataValueField="id">
+                    <asp:DropDownList ID="DropDownListProfesor" CssClass="form-control" runat="server" DataSourceID="EntityDataSourceProfessor" DataTextField="nom" DataValueField="id">
                     </asp:DropDownList>
                     <br />
+                    <br />
                     <asp:Button ID="btnCerrarCrear" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
-                    <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" />
+                    <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarCrear_Click" />
                 </div>
             </asp:Panel>
             <!-- ModalPopupExtender -->
@@ -123,6 +120,9 @@
 
         <asp:EntityDataSource ID="EntityDataSourceModulsProf" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableDelete="True" EnableFlattening="False" EnableUpdate="True" EntitySetName="moduls_prof" EntityTypeFilter="moduls_prof" Include="cursos">
         </asp:EntityDataSource>
+        <asp:HiddenField ID="HiddenField1" runat="server" />
+        <asp:ModalPopupExtender ID="HiddenField1_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" PopupControlID="PanelModalEsborrar" TargetControlID="HiddenField1">
+        </asp:ModalPopupExtender>
         <asp:EntityDataSource ID="EntityDataSourceProfessor" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="professors" EntityTypeFilter="professors">
         </asp:EntityDataSource>
     </asp:Panel>

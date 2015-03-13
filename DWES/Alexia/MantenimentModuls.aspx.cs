@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -50,13 +51,34 @@ public partial class MantenimentModuls : System.Web.UI.Page
     }
     protected void btnAceptarEsborrar_Click(object sender, EventArgs e)
     {
-
+    
     }
     protected void GridViewModuls_SelectedIndexChanged(object sender, EventArgs e)
     {
         //Rellenaras los datos.
         GridViewRow row = GridViewModuls.SelectedRow;
-        TextBoxModalCodi.Text=row.Cells[2].ID;
+
+       // DropDownList2.ClearSelection();
+        // DropDownList2.Items.FindByValue("2").Selected = true;
+
+        Label id_cicle = (Label)row.Cells[3].FindControl("LabelCodiGrid");
+        if (id_cicle.Text != "" && id_cicle.Text != null)
+        {
+            DropDownList1.ClearSelection();
+            DropDownList1.Items.FindByText(id_cicle.Text).Selected = true;
+        }
+
+        TextBoxModalCodi.Text = row.Cells[4].Text;
+        TextBoxModalNom.Text = row.Cells[5].Text;
+        TextBoxModalHores.Text = row.Cells[6].Text;
+        TextBoxModalHoresLliures.Text = row.Cells[7].Text;
+
+        if (row.Cells[8].Text != "&nbsp;" && row.Cells[8].Text != null)
+        {
+            DropDownListProfesor.ClearSelection();
+            DropDownListProfesor.Items.FindByValue(row.Cells[8].Text).Selected = true;
+        }
+
         ButtonNou_ModalPopupExtender.Show();
     }
 
@@ -128,5 +150,10 @@ public partial class MantenimentModuls : System.Web.UI.Page
         }
 
         return resultados;
+    }
+    protected void btnAceptarCrear_Click(object sender, EventArgs e)
+    {
+
+
     }
 }

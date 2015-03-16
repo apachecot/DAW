@@ -13,9 +13,17 @@ var masterui = (function () {
 		{
 			partida_empezada=true;
 		}
-		function MaxIntentos()
+		function MaxIntentosSlider()
 		{
 			MAX_INTENTOS=$( "#slider" ).slider( "value" );
+		}
+		function MaxIntentosStorage(intentosLocal)
+		{
+			MAX_INTENTOS=intentosLocal;
+		}
+		function GetMaxIntentos()
+		{
+			return MAX_INTENTOS;
 		}
 		
    
@@ -63,9 +71,9 @@ var masterui = (function () {
 			$( "#slider" ).slider({value:(MAX_INTENTOS-intentos)});
 			return (MAX_INTENTOS-intentos);
 	   }
-	   function SetIntentos()
+	   function SetIntentos(nintentos)
 	   {
-			intentos=0;
+			intentos=nintentos;
 	   }
 	   function GetIntentos()
 	   {
@@ -139,11 +147,14 @@ var masterui = (function () {
 		  ControlIntentos: ControlIntentos,
 		  SetIntentos: SetIntentos,
 		  GetIntentos: GetIntentos,
+		  GetMaxIntentos: GetMaxIntentos,
 		  EstadoPartida: EstadoPartida,
 		  EmpezarPartida: EmpezarPartida,
-		  MaxIntentos: MaxIntentos,
+		  MaxIntentosSlider: MaxIntentosSlider,
+		  MaxIntentosStorage: MaxIntentosStorage,
 		  CapturarCajaRapida: CapturarCajaRapida,
 		  ClickCajas: ClickCajas,
-		  SetSlider: SetSlider
+		  SetSlider: SetSlider,
+		  SetIntentos: SetIntentos
 	   }
 }());

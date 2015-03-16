@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="master.js"></script>
 	<script type="text/javascript" src="Events.js"></script>
   </head>
-  <body>
+  <body onload="masterui.SetSlider(); utils.CargarLocalStorage();">
   <div class="clearfix">
 		<div class="col-md-6 column">
 			<h1>Mastermind</h1>
@@ -24,8 +24,7 @@
 		<div class="col-md-2 column">
 		</div>
 		<div class="col-md-4 column text-info">
-			<p>Máximo número de intentos/
-			Número restante de intentos</p>
+			<p id="pIntentos">Máximo número de intentos</p>
 			<div id="slider"></div>
 			<p id="numeroIntentos" class="numero">10</p>
 		</div>
@@ -122,12 +121,12 @@
 			<p class="numero">1</p>
 		</div>
 		<div class="col-md-4 column">
-			 <button id="buttonJugar" type="button" class="btn btn-primary btn-lg btn-block">Empezar a jugar</button>
+			 <button id="buttonJugar" type="button" class="btn btn-warning btn-lg btn-block">Empezar a jugar</button>
 		</div>
 	</div>
 	<form class="clearfix">
 		<input id="inputText" placeholder="Código rápido" type="text">
-		<p id="error" style="display:none" class="error bg-danger">El código es incorrecto</p>
+		<p id="error" style="display:none" class="error bg-danger pError">El código es incorrecto</p>
 	</form>
 	<div id="resultados">
 		

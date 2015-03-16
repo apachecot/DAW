@@ -14,10 +14,11 @@ var master = (function () {
 			{
 				if(masterui.EstadoPartida()==false)
 				{
-					masterui.SetIntentos();
+					masterui.SetIntentos(0);
 					$( "#slider" ).slider({max:($( "#slider" ).slider( "value" ))});
+					$("#pIntentos").text("Número restante de intentos");
 					masterui.EmpezarPartida();
-					masterui.MaxIntentos();
+					masterui.MaxIntentosSlider();
 					generarCodigoOculto();
 					$( "#buttonJugar" ).text("Dame pistas");
 				}
@@ -31,7 +32,7 @@ var master = (function () {
 			}
 			else
 			{
-				$("#cajaJuego").effect("shake",{times:3}, 300); 
+				$("#error").effect("shake",{times:3}, 300); 
 			}
 		}
    
@@ -61,8 +62,9 @@ var master = (function () {
 			{
 				if(codigoIntentoOk.indexOf(codigoSecretoOk[i])!=-1 )
 				{
+					posicionBorrar=codigoIntentoOk.indexOf(codigoSecretoOk[i]);
 					contadorKO++;
-					codigoIntentoOk=codigoIntentoOk.slice(0, i) + codigoIntentoOk.slice(i+1);
+					codigoIntentoOk=codigoIntentoOk.slice(0, posicionBorrar) + codigoIntentoOk.slice(posicionBorrar+1);
 				}
 				i++;
 			}
@@ -104,7 +106,7 @@ var master = (function () {
 	     
 	   function generarCodigoOculto() {
 			codigo="";
-			if(Config.debug==false)
+			if(Config.codigoAutomatico==false)
 			{
 				for(i=MIN;i<MAX;i++)
 				{
@@ -114,8 +116,14 @@ var master = (function () {
 				codigo=Config.codigoPrueba;
 			}
 	   }
+	   
+	   function CargarcodigoOculto(codigoLocal) {
+			codigo=codigoLocal;
+	   }
+	   
 	   function ComprobarEstadoPartida(intentosRestantes)
 	   {
+			
 			if(contadorOk==5)
 			{
 				swal({   title: "¡Correcto!",   
@@ -125,8 +133,9 @@ var master = (function () {
 				{   
 					location.reload();
 				});
+				utils.GuardarLocalStorage(false);
 			}else{
-				if(intentosRestantes==0){
+				if(intentosRestantes<=0){
 					swal({   title: "¡Fallaste!",   
 					text: "No has conseguido descubrir el código",   
 					type: "error"},
@@ -134,6 +143,9 @@ var master = (function () {
 					{   
 						location.reload();
 					});
+					utils.GuardarLocalStorage(false);
+				}else{
+					utils.GuardarLocalStorage(true);
 				}
 			}
 	   }
@@ -158,6 +170,7 @@ var master = (function () {
 	   
 	   return {
 		  generarCodigoOculto: generarCodigoOculto,
+		  CargarcodigoOculto: CargarcodigoOculto,
 		  Jugar: Jugar,
 		  GetCodigo: GetCodigo,
 		  cuantasKO: cuantasKO,

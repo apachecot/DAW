@@ -4,7 +4,9 @@ body{
 h1{
 	color: white;
 }
-
+.btn{
+	height:100px;
+}
 .circulo { 
    float:left;
    margin-left:5px;
@@ -14,33 +16,34 @@ h1{
    -moz-border-radius: 70px; 
    -webkit-border-radius: 70px; 
    border-radius: 70px;
+   box-shadow: 2px 2px 1px #000000;
 }
 .I{
-	background:pink;
+	background:#FF92F9;
 }
 .II{
 	background:#FF0066;
 }
 .III{
-	background:yellow;
+	background:#FDF626;
 }
 .IV{
-	background:aqua;
+	background:#0AD4E2;
 }
 .V{
-	background:orange;
+	background:#FFA200;
 }
 .VI{
-	background:red;
+	background:#E20000;
 }
 .no{
 	background:white;
 }
 .ok{
-	background:green;
+	background:#08BA08;
 }
 .ko{
-	background:red;
+	background:#E20000;
 }
 .caja{
 	border: 2px solid;
@@ -71,6 +74,12 @@ h1{
 .bloque
 {
 	display:inline-block;
+}
+.pError{
+
+	margin-left:10px;
+	margin-right:10px;
+	
 }
 #inputText{
 	margin-top:-10px;

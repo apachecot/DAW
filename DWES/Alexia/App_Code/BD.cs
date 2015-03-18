@@ -27,6 +27,7 @@ public static class BD
         h.hores_lliures = hores;
         h.id_professor = id_professor;
 
+
         contexto.moduls_prof.Add(h);
         try
         {
@@ -43,16 +44,16 @@ public static class BD
         return (mensaje);
     }
 
-    public static var ConsultaModul(int id)
+    public static moduls_prof ConsultaModul(int id)
     {
-        var modul = (from c in contexto.cicles
+        var moduls = (from c in contexto.moduls_prof
 
                             where c.id == id
 
-                            select c);
+                            select c).ToList();
 
+        moduls_prof modul = moduls.First();
         
-
         return modul;
     }
 

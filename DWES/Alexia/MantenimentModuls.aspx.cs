@@ -55,28 +55,32 @@ public partial class MantenimentModuls : System.Web.UI.Page
     }
     protected void GridViewModuls_SelectedIndexChanged(object sender, EventArgs e)
     {
+        LabelTitolModal.Text = "Modificar";   
         //Rellenaras los datos.
         GridViewRow row = GridViewModuls.SelectedRow;
 
-       // DropDownList2.ClearSelection();
-        // DropDownList2.Items.FindByValue("2").Selected = true;
+        String id = row.Cells[3].Text;
 
-        Label id_cicle = (Label)row.Cells[3].FindControl("LabelCodiGrid");
-        if (id_cicle.Text != "" && id_cicle.Text != null)
-        {
-            DropDownList1.ClearSelection();
-            DropDownList1.Items.FindByText(id_cicle.Text).Selected = true;
-        }
+        moduls_prof modul = BD.ConsultaModul(Convert.ToInt32(id));
 
-        TextBoxModalCodi.Text = row.Cells[4].Text;
-        TextBoxModalNom.Text = row.Cells[5].Text;
-        TextBoxModalHores.Text = row.Cells[6].Text;
-        TextBoxModalHoresLliures.Text = row.Cells[7].Text;
+        String cicle = modul.cursos.cicles.id.ToString();
+        DropDownList2.ClearSelection();
+        DropDownList2.Items.FindByValue(cicle).Selected = true;
 
-        if (row.Cells[8].Text != "&nbsp;" && row.Cells[8].Text != null)
+        String id_curs = modul.id_curs.ToString();
+        DropDownList1.ClearSelection();
+        DropDownList1.Items.FindByValue(id_curs).Selected = true;
+
+
+        TextBoxModalCodi.Text = modul.codi.ToString();
+        TextBoxModalNom.Text = modul.nom.ToString();
+        TextBoxModalHores.Text = modul.hores.ToString();
+        TextBoxModalHoresLliures.Text = modul.hores_lliures.ToString();
+
+        if (modul.id_professor != null)
         {
             DropDownListProfesor.ClearSelection();
-            DropDownListProfesor.Items.FindByValue(row.Cells[8].Text).Selected = true;
+            DropDownListProfesor.Items.FindByValue(modul.id_professor.ToString()).Selected = true;
         }
 
         ButtonNou_ModalPopupExtender.Show();
@@ -153,7 +157,25 @@ public partial class MantenimentModuls : System.Web.UI.Page
     }
     protected void btnAceptarCrear_Click(object sender, EventArgs e)
     {
+        int id_cicle = Convert.ToInt32(DropDownList2.SelectedItem.Value.ToString());
+        int id_curs = Convert.ToInt32(DropDownList1.SelectedItem.Value.ToString());
+        String codi=TextBoxModalCodi.Text;
+        String nom= TextBoxModalNom.Text;
+        int hores=Convert.ToInt32(TextBoxModalHores.Text);
+        int hores_lliures=Convert.ToInt32(TextBoxModalHoresLliures.Text);
+        int id_profesor=Convert.ToInt32(DropDownListProfesor.SelectedItem.Value.ToString());
 
+        BD.Refrescar("moduls_prof");
 
+        String respuesta=BD.AltaModulProfesional(id_cicle, id_curs, codi, nom, hores, hores_lliures, id_profesor);
+    
+    }
+    protected void ButtonNou_Click(object sender, EventArgs e)
+    {
+        LabelTitolModal.Text = "Crear";
+        TextBoxModalCodi.Text = "";
+        TextBoxModalNom.Text = "";
+        TextBoxModalHores.Text = "";
+        TextBoxModalHoresLliures.Text = "";
     }
 }

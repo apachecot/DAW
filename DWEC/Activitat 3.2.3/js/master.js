@@ -166,6 +166,10 @@ var master = (function () {
 	   {
 			return contadorKO;
 	   }
+	   function SetUltimoIntento(ultimoIntento)
+	   {
+			codigoIntento=ultimoIntento;
+	   }
 	   
 	   
 	   return {
@@ -179,5 +183,6 @@ var master = (function () {
 		  GetKO: GetKO,
 		  GetOk: GetOk,
 		  TransformarACodigo: TransformarACodigo,
+		  SetUltimoIntento: SetUltimoIntento
 	   }
 }());

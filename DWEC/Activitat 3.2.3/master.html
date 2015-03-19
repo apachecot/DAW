@@ -6,15 +6,15 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 	<script src="lib/sweet-alert.min.js">
 	</script> <link rel="stylesheet" type="text/css" href="lib/sweet-alert.css">
-	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="utils.js"></script>
-	<script type="text/javascript" src="Config.js"></script>
-	<script type="text/javascript" src="masterui.js"></script>
-	<script type="text/javascript" src="master.js"></script>
-	<script type="text/javascript" src="Events.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/Config.js"></script>
+	<script type="text/javascript" src="js/masterui.js"></script>
+	<script type="text/javascript" src="js/master.js"></script>
+	<script type="text/javascript" src="js/Events.js"></script>
   </head>
   <body onload="masterui.SetSlider(); utils.CargarLocalStorage();">
   <div class="clearfix">
@@ -117,10 +117,10 @@
 					</div>
 				</div>	
 		</div>
-		<div class="col-md-2 column">
-			<p class="numero">1</p>
+		<div class="col-md-1 column">
+			<p id="contadorCentral" class="numero">1</p>
 		</div>
-		<div class="col-md-4 column">
+		<div class="col-md-5 column">
 			 <button id="buttonJugar" type="button" class="btn btn-warning btn-lg btn-block">Empezar a jugar</button>
 		</div>
 	</div>

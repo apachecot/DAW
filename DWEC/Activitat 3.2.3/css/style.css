@@ -1,5 +1,5 @@
 body{
-	background-image: url("back.jpg");
+	background-image: url("../img/back.jpg");
 }
 h1{
 	color: white;
@@ -58,6 +58,7 @@ h1{
 .numero{
 	font-size:30pt;
 	color: white;
+	text-align: center;
 }
 .cuadrado {
 	float:left;

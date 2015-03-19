@@ -1,6 +1,5 @@
 var Events = (function () {
 	$(document).ready(function(){
-		
 		//Clicks en los cuadrados selectores
 		 $( ".cuadrado" ).on("click",masterui.ClickCajas);
 		//Click en el boton jugar

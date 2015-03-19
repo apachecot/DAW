@@ -12,16 +12,22 @@ var utils = (function () {
 		function CargarLocalStorage()
 		{
 			if(typeof(Storage) !== "undefined") {
+				//Comprobamos si anteriormente había una partida empezada
 				if(localStorage.estadoPartida=="true")
 				{
+					//Cargamos los intentos máximos
 					masterui.MaxIntentosStorage(parseInt(localStorage.intentosMaximos));
-					masterui.SetIntentos(parseInt(localStorage.intentos));
+					//Cargamos los intentos y restamos 1 para hacer la última comprobación
+					masterui.SetIntentos(parseInt(localStorage.intentos)-1);
+					//Cargamos el código oculto de la partida anterior
 					master.CargarcodigoOculto(localStorage.codigo);
 					masterui.EmpezarPartida();
-					$( "#slider" ).slider({max:(parseInt(localStorage.intentosMaximos))});
+					//Colocamos el último valor introducido
+					$("#inputText").val(localStorage.ultimaJugada);
+					masterui.TransformarAColores(localStorage.ultimaJugada);
+					//Jugamos para hacer la última jugada del jugador y mostrarle los resultados
+					master.Jugar();
 					$("#pIntentos").text("Número restante de intentos");	
-					$(".col-md-2.column").find("p.numero").html(parseInt(localStorage.intentos)+1);
-					$(".col-md-4.column").find("p.numero").html(parseInt(localStorage.intentosMaximos-localStorage.intentos));
 					$( "#buttonJugar" ).text("Dame pistas");					
 				}	
 			} else {
@@ -33,10 +39,12 @@ var utils = (function () {
 		function GuardarLocalStorage(estado)
 		{
 			if(typeof(Storage) !== "undefined") {
+				//Guardamos la partida en localStorage
 				localStorage.intentosMaximos=masterui.GetMaxIntentos();
 				localStorage.intentos=masterui.GetIntentos();
 				localStorage.codigo=master.GetCodigo();
 				localStorage.estadoPartida=estado;
+				localStorage.ultimaJugada=master.GetCodigoIntento();
 			} else {
 				console.log("No es posible utilizar Local Storage");
 			}

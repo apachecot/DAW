@@ -28,7 +28,7 @@ var masterui = (function () {
 		
    
 	   function MostrarPistasEnLista() {
-			$( "#plantillaResult" ).clone().attr('id', 'result'+(intentos) ).appendTo( "#resultados" );
+			$( "#plantillaResult" ).clone().attr('id', 'result'+(intentos) ).prependTo( "#resultados" );
 			var codigo=master.GetCodigo().split('');
 			var aciertos=master.cuantasOk();
 			var ko=master.cuantasKO();
@@ -65,7 +65,7 @@ var masterui = (function () {
 	   {
 			intentos=intentos+1;
 			//Contador de intentos central
-			$(".col-md-2.column").find("p.numero").html(intentos+1);
+			$("#contadorCentral").html(intentos+1);
 			//Restador de intentos slider
 			$(".col-md-4.column").find("p.numero").html(MAX_INTENTOS-intentos);
 			$( "#slider" ).slider({value:(MAX_INTENTOS-intentos)});
@@ -83,6 +83,10 @@ var masterui = (function () {
 		
 			  var m = $("#inputText").val();
 			  var expreg = new RegExp("^[0-6]{0,5}$");
+			  var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        alert('You pressed a "enter" key in textbox'); 
+    }
 			  
 			  if(expreg.test(m)){
 					TransformarAColores(m);
@@ -153,6 +157,7 @@ var masterui = (function () {
 		  MaxIntentosSlider: MaxIntentosSlider,
 		  MaxIntentosStorage: MaxIntentosStorage,
 		  CapturarCajaRapida: CapturarCajaRapida,
+		  TransformarAColores: TransformarAColores,
 		  ClickCajas: ClickCajas,
 		  SetSlider: SetSlider,
 		  SetIntentos: SetIntentos

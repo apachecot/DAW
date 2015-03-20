@@ -11,8 +11,8 @@
     <asp:Panel ID="Panel1" runat="server" CssClass="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <asp:Button ID="ButtonNou" CssClass="btn btn-primary" runat="server" Text="Nou" OnClick="ButtonNou_Click" />
-                <asp:ModalPopupExtender ID="ButtonNou_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" TargetControlID="ButtonNou" PopupControlID="PanelModalCrear">
+                <asp:Button ID="ButtonNou" CssClass="btn btn-primary" runat="server" Text="Nou" />
+                <asp:ModalPopupExtender ID="ButtonNou_ModalPopupExtender" runat="server" Enabled="True" TargetControlID="ButtonNou" PopupControlID="PanelModalCrear">
                 </asp:ModalPopupExtender>
             </h3>
         </div>
@@ -34,7 +34,7 @@
                                         <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" OnClick="LinkButton2_Click"></asp:LinkButton>
                                         <asp:ConfirmButtonExtender ID="LinkButton2_ConfirmButtonExtender" runat="server" ConfirmText="" DisplayModalPopupID="LinkButton2_ModalPopupExtender" Enabled="True" TargetControlID="LinkButton2">
                                         </asp:ConfirmButtonExtender>
-                                        <asp:ModalPopupExtender ID="LinkButton2_ModalPopupExtender" runat="server" CancelControlID="btnCerrarEsborrar" DynamicServicePath="" Enabled="True" OkControlID="btnAceptarEsborrar" PopupControlID="PanelModalEsborrar" TargetControlID="LinkButton2">
+                                        <asp:ModalPopupExtender ID="LinkButton2_ModalPopupExtender" runat="server" CancelControlID="btnCerrarEsborrar" Enabled="True" OkControlID="btnAceptarEsborrar" PopupControlID="PanelModalEsborrar" TargetControlID="LinkButton2">
                                         </asp:ModalPopupExtender>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -68,9 +68,13 @@
                     <h3 class="panel-title">Esborrar</h3>
                 </div>
                 <div class="panel-body">
-                    Estàs segur de que vols esborrar el registre?<br />
-                    <asp:Button ID="btnCerrarEsborrar" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
-                    <asp:Button ID="btnAceptarEsborrar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarEsborrar_Click" />
+                    <p class="text-center">Estàs segur de que vols esborrar el registre?</p>
+                    <div class="row">
+                        <div class="col-lg-1 col-centered">
+                            <asp:Button ID="btnCerrarEsborrar" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
+                            <asp:Button ID="btnAceptarEsborrar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarEsborrar_Click" />
+                        </div>
+                     </div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="PanelModalCrear" runat="server" CssClass="panel panel-primary">
@@ -94,28 +98,32 @@
                     <br />
                     <asp:Label ID="LabelModalCodi" runat="server" Text="Codi"></asp:Label>
                     <asp:TextBox ID="TextBoxModalCodi" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorCodi" runat="server" ControlToValidate="TextBoxModalCodi" ErrorMessage="Camp obligatori"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxModalCodi" CssClass="error" ErrorMessage="Codi obligatori" ValidationGroup="popup"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="LabelModalNom" runat="server" Text="Nom"></asp:Label>
                     <asp:TextBox ID="TextBoxModalNom" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorNom" runat="server" ControlToValidate="TextBoxModalNom" ErrorMessage="Camp obligatori"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorNom" runat="server" ControlToValidate="TextBoxModalNom" ErrorMessage="Camp obligatori" ValidationGroup="popup" CssClass="error"></asp:RequiredFieldValidator>
                     <br />
                     <asp:Label ID="LabelModalHores" runat="server" Text="Hores"></asp:Label>
-                    <asp:TextBox ID="TextBoxModalHores" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorHores" runat="server" ControlToValidate="TextBoxModalHores" ErrorMessage="Camp obligatori"></asp:RequiredFieldValidator>
-                    <br />
-                    <asp:Label ID="LabelModalHoresLliures" runat="server" Text="Hores lliure elecció"></asp:Label>
-                    <asp:TextBox ID="TextBoxModalHoresLliures" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorHores_lliures" runat="server" ControlToValidate="TextBoxModalHoresLliures" ErrorMessage="Camp obligatori"></asp:RequiredFieldValidator>
-                    <br />
+                    &nbsp;<asp:CompareValidator ID="CompareValidatorHores" runat="server" ControlToValidate="TextBoxModalHores" CssClass="error" ErrorMessage="Introdueix un número" Operator="DataTypeCheck" Type="Integer" ValidationGroup="popup"></asp:CompareValidator>
+                    <asp:TextBox ID="TextBoxModalHores" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorHores" runat="server" ControlToValidate="TextBoxModalHores" CssClass="error" ErrorMessage="Camp obligatori" ValidationGroup="popup"></asp:RequiredFieldValidator>
+                    &nbsp;<br />&nbsp;<asp:Label ID="LabelModalHoresLliures" runat="server" Text="Hores lliure elecció"></asp:Label>
+                    &nbsp;<asp:CompareValidator ID="CompareValidatorHoresLliures" runat="server" ControlToValidate="TextBoxModalHoresLliures" CssClass="error" ErrorMessage="Introdueix un número" Operator="DataTypeCheck" Type="Integer" ValidationGroup="popup"></asp:CompareValidator>
+                    <asp:TextBox ID="TextBoxModalHoresLliures" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorHores_lliures" runat="server" ControlToValidate="TextBoxModalHoresLliures" CssClass="error" ErrorMessage="Camp obligatori" ValidationGroup="popup"></asp:RequiredFieldValidator>
+                    &nbsp;<br />
                     <asp:Label ID="LabelModalProfesor" runat="server" Text="Profesor"></asp:Label>
                     <br />
                     <asp:DropDownList ID="DropDownListProfesor" CssClass="form-control" runat="server" DataSourceID="EntityDataSourceProfessor" DataTextField="nom" DataValueField="id">
                     </asp:DropDownList>
+                    <asp:Label ID="LabelErrorBD" runat="server" CssClass="error" Visible="False"></asp:Label>
+                    <br />
+                    <asp:Label ID="LabelIdModificar" runat="server" Visible="False"></asp:Label>
                     <br />
                     <br />
                     <asp:Button ID="btnCerrarCrear" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" CausesValidation="False" />
-                    <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarCrear_Click" />
+                    <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarCrear_Click" ValidationGroup="popup" />
                 </div>
             </asp:Panel>
             <!-- ModalPopupExtender -->
@@ -125,7 +133,7 @@
         <asp:EntityDataSource ID="EntityDataSourceModulsProf" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableDelete="True" EnableFlattening="False" EnableUpdate="True" EntitySetName="moduls_prof" EntityTypeFilter="moduls_prof" Include="cursos">
         </asp:EntityDataSource>
         <asp:HiddenField ID="HiddenField1" runat="server" />
-        <asp:ModalPopupExtender ID="HiddenField1_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" PopupControlID="PanelModalEsborrar" TargetControlID="HiddenField1">
+        <asp:ModalPopupExtender ID="HiddenField1_ModalPopupExtender" runat="server" Enabled="True" PopupControlID="PanelModalEsborrar" TargetControlID="HiddenField1">
         </asp:ModalPopupExtender>
         <asp:EntityDataSource ID="EntityDataSourceProfessor" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="professors" EntityTypeFilter="professors">
         </asp:EntityDataSource>

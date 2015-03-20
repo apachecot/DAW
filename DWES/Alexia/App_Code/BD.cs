@@ -24,7 +24,7 @@ public static class BD
         h.codi = codi;
         h.nom = nom;
         h.hores = hores;
-        h.hores_lliures = hores;
+        h.hores_lliures = hores_lliures;
         h.id_professor = id_professor;
 
 
@@ -39,6 +39,38 @@ public static class BD
             mensaje = BDErrores.MensajeError(sqlEx);
 
             contexto.moduls_prof.Remove(h);
+        }
+
+        return (mensaje);
+    }
+
+    public static string ModificarModulProfesional(int id,int id_cicle, int id_curs, string codi, string nom, int hores, int hores_lliures, int id_professor)
+    {
+        string mensaje = "";
+
+        var moduls = (from c in contexto.moduls_prof
+
+                      where c.id == id
+
+                      select c).ToList();
+
+        moduls_prof modul = moduls.First();
+
+        modul.id_curs = id_curs;
+        modul.codi = codi;
+        modul.nom = nom;
+        modul.hores = hores;
+        modul.hores_lliures = hores_lliures;
+        modul.id_professor = id_professor;
+
+        try
+        {
+            contexto.SaveChanges();
+        }
+        catch (DbUpdateException ex)
+        {
+            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+            mensaje = BDErrores.MensajeError(sqlEx);
         }
 
         return (mensaje);

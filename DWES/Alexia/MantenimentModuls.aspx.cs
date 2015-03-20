@@ -25,8 +25,6 @@ public partial class MantenimentModuls : System.Web.UI.Page
     }
     protected void VerGrid()
     {
-        //Refrescar la informació de la grid
-        //BD.Refrescar("hoteles");
         EntityDataSourceModulsProf.Where = _where;
     }
     protected void DropDownListCicles_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,16 +59,17 @@ public partial class MantenimentModuls : System.Web.UI.Page
 
         String id = row.Cells[3].Text;
 
+        LabelIdModificar.Text=id;
+
         moduls_prof modul = BD.ConsultaModul(Convert.ToInt32(id));
 
         String cicle = modul.cursos.cicles.id.ToString();
         DropDownList2.ClearSelection();
-        DropDownList2.Items.FindByValue(cicle).Selected = true;
+        DropDownList2_CascadingDropDown.SelectedValue = cicle;
 
         String id_curs = modul.id_curs.ToString();
         DropDownList1.ClearSelection();
-        DropDownList1.Items.FindByValue(id_curs).Selected = true;
-
+        DropDownList1_CascadingDropDown.SelectedValue = id_curs;
 
         TextBoxModalCodi.Text = modul.codi.ToString();
         TextBoxModalNom.Text = modul.nom.ToString();
@@ -157,25 +156,62 @@ public partial class MantenimentModuls : System.Web.UI.Page
     }
     protected void btnAceptarCrear_Click(object sender, EventArgs e)
     {
-        int id_cicle = Convert.ToInt32(DropDownList2.SelectedItem.Value.ToString());
-        int id_curs = Convert.ToInt32(DropDownList1.SelectedItem.Value.ToString());
-        String codi=TextBoxModalCodi.Text;
-        String nom= TextBoxModalNom.Text;
-        int hores=Convert.ToInt32(TextBoxModalHores.Text);
-        int hores_lliures=Convert.ToInt32(TextBoxModalHoresLliures.Text);
-        int id_profesor=Convert.ToInt32(DropDownListProfesor.SelectedItem.Value.ToString());
+        if (this.IsValid)
+        {
+            int id_cicle = Convert.ToInt32(DropDownList2.SelectedItem.Value.ToString());
+            int id_curs = Convert.ToInt32(DropDownList1.SelectedItem.Value.ToString());
+            String codi = TextBoxModalCodi.Text;
+            String nom = TextBoxModalNom.Text;
+            int hores = Convert.ToInt32(TextBoxModalHores.Text);
+            int hores_lliures = Convert.ToInt32(TextBoxModalHoresLliures.Text);
+            int id_profesor = Convert.ToInt32(DropDownListProfesor.SelectedItem.Value.ToString());
 
-        BD.Refrescar("moduls_prof");
-
-        String respuesta=BD.AltaModulProfesional(id_cicle, id_curs, codi, nom, hores, hores_lliures, id_profesor);
-    
+            if (LabelTitolModal.Text == "Crear")
+            {
+                String respuesta = BD.AltaModulProfesional(id_cicle, id_curs, codi, nom, hores, hores_lliures, id_profesor);
+                if (respuesta != "")
+                {
+                    LabelErrorBD.Text = respuesta;
+                    ButtonNou_ModalPopupExtender.Show();
+                }
+                else
+                {
+                    LimpiarPopUp();
+                }
+            }
+            else
+            {
+                int id = Convert.ToInt32(LabelIdModificar.Text);
+                String respuesta = BD.ModificarModulProfesional(id, id_cicle, id_curs, codi, nom, hores, hores_lliures, id_profesor);
+                if (respuesta != "")
+                {
+                    LabelErrorBD.Text = respuesta;
+                    ButtonNou_ModalPopupExtender.Show();
+                }
+                else
+                {
+                    LimpiarPopUp();
+                }
+            }
+            
+            BD.Refrescar("moduls_prof");
+        }
+        else
+        {
+            ButtonNou_ModalPopupExtender.Show();
+        }
     }
-    protected void ButtonNou_Click(object sender, EventArgs e)
+    public void LimpiarPopUp()
     {
         LabelTitolModal.Text = "Crear";
         TextBoxModalCodi.Text = "";
         TextBoxModalNom.Text = "";
         TextBoxModalHores.Text = "";
         TextBoxModalHoresLliures.Text = "";
+        LabelErrorBD.Text = "";
+    }
+    protected void btnCerrarCrear_Click(object sender, EventArgs e)
+    {
+        LimpiarPopUp();
     }
 }

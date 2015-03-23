@@ -16,6 +16,7 @@ var master = (function () {
 				{
 					masterui.SetIntentos(0);
 					$( "#slider" ).slider({max:($( "#slider" ).slider( "value" ))});
+					$( "#slider" ).slider( "option", "disabled", true );
 					$("#pIntentos").text("Número restante de intentos");
 					masterui.EmpezarPartida();
 					masterui.MaxIntentosSlider();
@@ -34,6 +35,7 @@ var master = (function () {
 			{
 				$("#error").effect("shake",{times:3}, 300); 
 			}
+			return false;
 		}
    
 	   function cuantasOk() {

@@ -21,6 +21,9 @@ var utils = (function () {
 					masterui.SetIntentos(parseInt(localStorage.intentos)-1);
 					//Cargamos el código oculto de la partida anterior
 					master.CargarcodigoOculto(localStorage.codigo);
+					//Desactivamos el slider
+					$( "#slider" ).slider( "option", "disabled", true );
+					
 					masterui.EmpezarPartida();
 					//Colocamos el último valor introducido
 					$("#inputText").val(localStorage.ultimaJugada);

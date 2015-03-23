@@ -6,5 +6,7 @@ var Events = (function () {
 		$( "#buttonJugar" ).on("click",master.Jugar);
 		//Introducir datos textarea
 		$("#inputText").on("keyup",masterui.CapturarCajaRapida); 
+		//Evento enter formulario
+		$("#formulario").submit(master.Jugar);
 	});
 }());

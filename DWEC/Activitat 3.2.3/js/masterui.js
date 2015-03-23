@@ -84,10 +84,7 @@ var masterui = (function () {
 			  var m = $("#inputText").val();
 			  var expreg = new RegExp("^[0-6]{0,5}$");
 			  var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-        alert('You pressed a "enter" key in textbox'); 
-    }
-			  
+							  
 			  if(expreg.test(m)){
 					TransformarAColores(m);
 					$("#error").hide();

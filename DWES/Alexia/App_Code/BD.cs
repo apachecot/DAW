@@ -88,6 +88,80 @@ public static class BD
         
         return modul;
     }
+    public static List<moduls_prof> ConsultaCursModulProf(int id)
+    {
+        var moduls = (from c in contexto.moduls_prof
+
+                      where c.id_curs == id
+
+                      select c).ToList();
+
+
+        return moduls;
+    }
+    public static string AltaUF(int id_modul, string nom)
+    {
+        string mensaje = "";
+
+        ufs h = new ufs();
+
+        h.id_modul_prof = id_modul;
+        h.nom = nom;
+
+        contexto.ufs.Add(h);
+        try
+        {
+            contexto.SaveChanges();
+        }
+        catch (DbUpdateException ex)
+        {
+            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+            mensaje = BDErrores.MensajeError(sqlEx);
+
+            contexto.ufs.Remove(h);
+        }
+
+        return (mensaje);
+    }
+    public static string ModificarUF(int id, int id_modul, string nom)
+    {
+        string mensaje = "";
+
+        var ufs = (from c in contexto.ufs
+
+                      where c.id == id
+
+                      select c).ToList();
+
+        ufs uf = ufs.First();
+
+        uf.id_modul_prof = id_modul;
+        uf.nom = nom;
+
+        try
+        {
+            contexto.SaveChanges();
+        }
+        catch (DbUpdateException ex)
+        {
+            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+            mensaje = BDErrores.MensajeError(sqlEx);
+        }
+
+        return (mensaje);
+    }
+    public static ufs ConsultaUF(int id)
+    {
+        var ufs = (from c in contexto.ufs
+
+                      where c.id == id
+
+                      select c).ToList();
+
+        ufs uf = ufs.First();
+
+        return uf;
+    }
 
     public static string EsborrarHotel(Exception ex)
     {
@@ -102,6 +176,9 @@ public static class BD
         switch (entitat)
         {
             case "moduls_prof":
+                objectContext.Refresh(RefreshMode.StoreWins, contexto.moduls_prof);
+                break;
+            case "ufs":
                 objectContext.Refresh(RefreshMode.StoreWins, contexto.moduls_prof);
                 break;
         }

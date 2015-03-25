@@ -84,7 +84,7 @@
                 <div class="panel-body">
                     <asp:Label ID="LabelCicleModal" runat="server" Text="Cicle"></asp:Label>
                     <br />
-                    <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="id">
+                    <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server">
                     </asp:DropDownList>
                     <asp:CascadingDropDown ID="DropDownList2_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList2" UseContextKey="True">
                     </asp:CascadingDropDown>
@@ -122,7 +122,7 @@
                     <asp:Label ID="LabelIdModificar" runat="server" Visible="False"></asp:Label>
                     <br />
                     <br />
-                    <asp:Button ID="btnCerrarCrear" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" CausesValidation="False" />
+                    <asp:Button ID="btnCerrarCrear" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" CausesValidation="False" OnClick="btnCerrarCrear_Click" />
                     <asp:Button ID="btnAceptarCrear" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarCrear_Click" ValidationGroup="popup" />
                 </div>
             </asp:Panel>

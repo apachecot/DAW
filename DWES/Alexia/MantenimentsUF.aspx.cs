@@ -23,16 +23,17 @@ public partial class MantenimentsUF : System.Web.UI.Page
             EntityDataSourceUF.Where = _where;
         }
     }
-    protected void VerGrid()
+    protected void RefrescarGrid()
     {
         EntityDataSourceUF.Where = _where;
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (int.Parse(DropDownList1.SelectedValue) == 0)
+        String selected = DropDownList1.SelectedValue.ToString();
+        if (selected == "")
         {
             _where = "";
-            EntityDataSourceUF.Where = _where;
+            GridViewUF.Visible = false;
         }
         else
         {
@@ -63,14 +64,6 @@ public partial class MantenimentsUF : System.Web.UI.Page
         GridViewUF.PageIndex = 0;
     }
 
-    protected void LinkButton2_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void btnAceptarEsborrar_Click(object sender, EventArgs e)
-    {
-
-    }
     protected void GridViewUF_SelectedIndexChanged(object sender, EventArgs e)
     {
         LabelTitolModal.Text = "Modificar";
@@ -210,7 +203,7 @@ public partial class MantenimentsUF : System.Web.UI.Page
             }
 
             BD.Refrescar("ufs");
-            VerGrid();
+            RefrescarGrid();
         }
         else
         {
@@ -264,5 +257,17 @@ public partial class MantenimentsUF : System.Web.UI.Page
         }
 
         return resultados;
+    }
+    protected void GridViewUF_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+        if (e.Exception != null)
+        {
+            LabelMensajeGridError.Text = BD.EsborrarUF(e.Exception);
+            e.ExceptionHandled = true;
+        }
+        else
+        {
+            LabelMensajeGridError.Text = "";
+        }
     }
 }

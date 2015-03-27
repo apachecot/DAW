@@ -16,14 +16,14 @@ public partial class MantenimentModuls : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            VerGrid();
+            GridViewModuls.Visible = false;
         }
         else
         {
             EntityDataSourceModulsProf.Where = _where;
         }
     }
-    protected void VerGrid()
+    protected void RefrescarGrid()
     {
         EntityDataSourceModulsProf.Where = _where;
     }
@@ -36,20 +36,31 @@ public partial class MantenimentModuls : System.Web.UI.Page
         }
         else
         {
-            _where = "it.id_curs = " + DropDownListCicles.SelectedValue;
+            Int32 id_cicle = Convert.ToInt32(DropDownListCicles.SelectedValue);
+            List<cursos> cursos = BD.ConsultaCursos(id_cicle);
+            if (cursos.Count() == 0)
+            {
+                GridViewModuls.Visible = false;
+            }
+            else
+            {
+                GridViewModuls.Visible = true;
+            }
+            for (Int32 i = 0; i < cursos.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    _where = "it.id_curs = " + cursos[i].id;
+                }
+                else
+                {
+                    _where = _where + " or it.id_curs = " + cursos[i].id;
+                }
+            }
             EntityDataSourceModulsProf.Where = _where;
         }
 
         GridViewModuls.PageIndex = 0;
-    }
-
-    protected void LinkButton2_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void btnAceptarEsborrar_Click(object sender, EventArgs e)
-    {
-    
     }
     protected void GridViewModuls_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -193,8 +204,8 @@ public partial class MantenimentModuls : System.Web.UI.Page
                     LimpiarPopUp();
                 }
             }
-            
             BD.Refrescar("moduls_prof");
+            RefrescarGrid();
         }
         else
         {
@@ -213,5 +224,17 @@ public partial class MantenimentModuls : System.Web.UI.Page
     protected void btnCerrarCrear_Click(object sender, EventArgs e)
     {
         LimpiarPopUp();
+    }
+    protected void GridViewModuls_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+        if (e.Exception != null)
+        {
+            LabelMensajeGridError.Text = BD.EsborrarModul(e.Exception);
+            e.ExceptionHandled = true;
+        }
+        else
+        {
+            LabelMensajeGridError.Text = "";
+        }
     }
 }

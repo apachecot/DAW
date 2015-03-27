@@ -27,18 +27,30 @@ public static class BD
         h.hores_lliures = hores_lliures;
         h.id_professor = id_professor;
 
+        var comprobar = (from c in contexto.moduls_prof
 
-        contexto.moduls_prof.Add(h);
-        try
+                      where c.id_curs == id_curs && (c.nom == nom || c.codi==codi)
+
+                      select c).ToList();
+        if (comprobar.Count() == 0)
         {
-            contexto.SaveChanges();
+
+            contexto.moduls_prof.Add(h);
+            try
+            {
+                contexto.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+                mensaje = BDErrores.MensajeError(sqlEx);
+
+                contexto.moduls_prof.Remove(h);
+            }
         }
-        catch (DbUpdateException ex)
+        else
         {
-            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
-            mensaje = BDErrores.MensajeError(sqlEx);
-
-            contexto.moduls_prof.Remove(h);
+            mensaje = "Ja existeix un registre amb el mateix nom o codi";
         }
 
         return (mensaje);
@@ -62,18 +74,39 @@ public static class BD
         modul.hores = hores;
         modul.hores_lliures = hores_lliures;
         modul.id_professor = id_professor;
+         var comprobar = (from c in contexto.moduls_prof
 
-        try
-        {
-            contexto.SaveChanges();
-        }
-        catch (DbUpdateException ex)
-        {
-            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
-            mensaje = BDErrores.MensajeError(sqlEx);
-        }
+                      where c.id!=id && c.id_curs == id_curs && (c.nom == nom || c.codi==codi)
 
+                      select c).ToList();
+        if (comprobar.Count() == 0)
+        {
+            try
+            {
+                contexto.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+                mensaje = BDErrores.MensajeError(sqlEx);
+            }
+        }
+        else
+        {
+            mensaje = "Ja existeix un registre amb el mateix nom o codi";
+        }
         return (mensaje);
+    }
+
+    public static List<cursos> ConsultaCursos(int id)
+    {
+        var cursos = (from c in contexto.cursos
+
+                      where c.id_cicle == id
+
+                      select c).ToList();
+
+        return cursos;
     }
 
     public static moduls_prof ConsultaModul(int id)
@@ -108,18 +141,30 @@ public static class BD
         h.id_modul_prof = id_modul;
         h.nom = nom;
 
-        contexto.ufs.Add(h);
-        try
-        {
-            contexto.SaveChanges();
-        }
-        catch (DbUpdateException ex)
-        {
-            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
-            mensaje = BDErrores.MensajeError(sqlEx);
+         var comprobar = (from c in contexto.ufs
 
-            contexto.ufs.Remove(h);
-        }
+                      where c.id_modul_prof == id_modul && c.nom == nom
+
+                      select c).ToList();
+         if (comprobar.Count() == 0)
+         {
+             contexto.ufs.Add(h);
+             try
+             {
+                 contexto.SaveChanges();
+             }
+             catch (DbUpdateException ex)
+             {
+                 SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+                 mensaje = BDErrores.MensajeError(sqlEx);
+
+                 contexto.ufs.Remove(h);
+             }
+         }
+         else
+         {
+             mensaje = "Ja existeix un registre amb el mateix nom";
+         }
 
         return (mensaje);
     }
@@ -137,17 +182,27 @@ public static class BD
 
         uf.id_modul_prof = id_modul;
         uf.nom = nom;
+        var comprobar = (from c in contexto.ufs
 
-        try
-        {
-            contexto.SaveChanges();
-        }
-        catch (DbUpdateException ex)
-        {
-            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
-            mensaje = BDErrores.MensajeError(sqlEx);
-        }
+                      where c.id_modul_prof == id_modul && c.nom == nom
 
+                      select c).ToList();
+         if (comprobar.Count() == 0)
+         {
+            try
+            {
+                contexto.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+                mensaje = BDErrores.MensajeError(sqlEx);
+            }
+         }
+         else
+         {
+             mensaje = "Ja existeix un registre amb el mateix nom";
+         }
         return (mensaje);
     }
     public static ufs ConsultaUF(int id)
@@ -163,7 +218,13 @@ public static class BD
         return uf;
     }
 
-    public static string EsborrarHotel(Exception ex)
+    public static string EsborrarModul(Exception ex)
+    {
+        SqlException sqlEx = (SqlException)ex.InnerException;
+        return BDErrores.MensajeError(sqlEx);
+    }
+
+    public static string EsborrarUF(Exception ex)
     {
         SqlException sqlEx = (SqlException)ex.InnerException;
         return BDErrores.MensajeError(sqlEx);

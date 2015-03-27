@@ -27,21 +27,21 @@
                     <br />
                     <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:CascadingDropDown ID="DropDownList2_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList2" UseContextKey="True">
+                    <asp:CascadingDropDown ID="DropDownList2_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList2" UseContextKey="True" LoadingText="Carregant">
                     </asp:CascadingDropDown>
                     <br />
                     <asp:Label ID="LabelCursModal" runat="server" Text="Curs"></asp:Label>
                     <br />
                     <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:CascadingDropDown ID="DropDownList1_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList2" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList1" UseContextKey="True">
+                    <asp:CascadingDropDown ID="DropDownList1_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList2" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList1" UseContextKey="True" EmptyText="No existeixen cursos" EmptyValue="0" LoadingText="Carregant" PromptText="Selecciona un curs">
                     </asp:CascadingDropDown>
                     <br />
-                        <asp:GridView ID="GridViewUF" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="EntityDataSourceUF" Width="100%" OnSelectedIndexChanged="GridViewUF_SelectedIndexChanged">
+                        <asp:GridView ID="GridViewUF" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="EntityDataSourceUF" Width="100%" OnSelectedIndexChanged="GridViewUF_SelectedIndexChanged" OnRowDeleted="GridViewUF_RowDeleted">
                             <Columns>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" OnClick="LinkButton2_Click"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
                                         <asp:ConfirmButtonExtender ID="LinkButton2_ConfirmButtonExtender" runat="server" ConfirmText="" DisplayModalPopupID="LinkButton2_ModalPopupExtender" Enabled="True" TargetControlID="LinkButton2">
                                         </asp:ConfirmButtonExtender>
                                         <asp:ModalPopupExtender ID="LinkButton2_ModalPopupExtender" runat="server" CancelControlID="btnCerrarEsborrar" Enabled="True" OkControlID="btnAceptarEsborrar" PopupControlID="PanelModalEsborrar" TargetControlID="LinkButton2">
@@ -57,7 +57,7 @@
                                 <HeaderStyle CssClass="HideCell" />
                                 <ItemStyle CssClass="HideCell" />
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="id_modul_prof" SortExpression="id_modul_prof">
+                                <asp:TemplateField HeaderText="Modul Profesional" SortExpression="id_modul_prof">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("id_modul_prof") %>'></asp:TextBox>
                                     </EditItemTemplate>
@@ -65,9 +65,11 @@
                                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("moduls_prof.nom") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="nom" HeaderText="nom" SortExpression="nom" />
+                                <asp:BoundField DataField="nom" HeaderText="Nom de la UF" SortExpression="nom" />
                             </Columns>
                         </asp:GridView>
+                        <br />
+                        <asp:Label ID="LabelMensajeGridError" runat="server" CssClass="error"></asp:Label>
                     </div>
                   </div>
                 </asp:Panel>
@@ -81,7 +83,7 @@
                     <div class="row">
                         <div class="col-lg-1 col-centered">
                             <asp:Button ID="btnCerrarEsborrar" runat="server" CssClass="btn btn-danger" Text="Cancel·lar" />
-                            <asp:Button ID="btnAceptarEsborrar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarEsborrar_Click" />
+                            <asp:Button ID="btnAceptarEsborrar" runat="server" CssClass="btn btn-success" Text="Aceptar" />
                         </div>
                      </div>
                 </div>
@@ -95,24 +97,24 @@
                     <asp:Label ID="LabelCicleModal0" runat="server" Text="Cicle"></asp:Label>
                     <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:CascadingDropDown ID="DropDownList3_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList3" UseContextKey="True">
+                    <asp:CascadingDropDown ID="DropDownList3_CascadingDropDown" runat="server" Category="padreCicle" Enabled="True" ServiceMethod="GetDropDownContents" TargetControlID="DropDownList3" UseContextKey="True" LoadingText="Carregant">
                     </asp:CascadingDropDown>
                     <asp:Label ID="LabelCursModal0" runat="server" Text="Curs"></asp:Label>
                     <asp:DropDownList ID="DropDownList4" runat="server" CssClass="form-control">
                     </asp:DropDownList>
-                    <asp:CascadingDropDown ID="DropDownList4_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList3" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList4" UseContextKey="True">
+                    <asp:CascadingDropDown ID="DropDownList4_CascadingDropDown" runat="server" Category="hijoCicle" Enabled="True" ParentControlID="DropDownList3" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownList4" UseContextKey="True" EmptyText="No existeixen cursos" LoadingText="Carregant">
                     </asp:CascadingDropDown>
                     <asp:Label ID="LabelCursModal1" runat="server" Text="Modul Profesional"></asp:Label>
                     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownList5" CssClass="error" ErrorMessage="Es necesari un Modul" ValidationGroup="popup"></asp:RequiredFieldValidator>
                     <asp:DropDownList ID="DropDownList5" runat="server" CssClass="form-control">
                     </asp:DropDownList>
-                    <asp:CascadingDropDown ID="DropDownList5_CascadingDropDown" runat="server" Category="hijoCurs" Enabled="True" ParentControlID="DropDownList4" ServiceMethod="GetDropDownContents3" TargetControlID="DropDownList5" UseContextKey="True">
+                    <asp:CascadingDropDown ID="DropDownList5_CascadingDropDown" runat="server" Category="hijoCurs" Enabled="True" ParentControlID="DropDownList4" ServiceMethod="GetDropDownContents3" TargetControlID="DropDownList5" UseContextKey="True" EmptyText="No existeixen moduls" LoadingText="Carregant">
                     </asp:CascadingDropDown>
                     <asp:Label ID="Label2" runat="server" Text="Nom unitat formativa"></asp:Label>
                     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxNomUF" CssClass="error" ErrorMessage="Camp obligatori" ValidationGroup="popup"></asp:RequiredFieldValidator>
                     <br />
                     <asp:TextBox ID="TextBoxNomUF" runat="server" CssClass="form-control"></asp:TextBox>
-                    <asp:Label ID="LabelErrorBD" runat="server" CssClass="error" Visible="False"></asp:Label>
+                    <asp:Label ID="LabelErrorBD" runat="server" CssClass="error"></asp:Label>
                     <br />
                     <asp:Label ID="LabelIdModificar" runat="server" Visible="False"></asp:Label>
                     <br />

@@ -24,7 +24,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <asp:Label ID="LabelCicle" runat="server" Text="Cicle"></asp:Label>
-                        <asp:DropDownList ID="DropDownListCicles" runat="server" CssClass="dropdown-toggle" AutoPostBack="True" DataSourceID="EntityDataSourceCicle" DataTextField="nom" DataValueField="id" OnSelectedIndexChanged="DropDownListCicles_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownListCicles" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="EntityDataSourceCicle" DataTextField="nom" DataValueField="id" OnSelectedIndexChanged="DropDownListCicles_SelectedIndexChanged"></asp:DropDownList>
                         <br />
                         <br />
                         <asp:GridView ID="GridViewModuls" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="EntityDataSourceModulsProf" Width="100%" OnSelectedIndexChanged="GridViewModuls_SelectedIndexChanged" OnRowDeleted="GridViewModuls_RowDeleted">

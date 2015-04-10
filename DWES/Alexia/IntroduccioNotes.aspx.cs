@@ -16,17 +16,14 @@ public partial class IntroduccioNotes : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            // GridViewUF.Visible = false;
+             GridViewAlumnes.Visible = false;
         }
         else
         {
             EntityDataSourceAlumnes.Where = _where;
         }
     }
-    protected void RefrescarGrid()
-    {
-        EntityDataSourceAlumnes.Where = _where;
-    }
+    
 
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
     public static AjaxControlToolkit.CascadingDropDownNameValue[] GetDropDownContents(string knownCategoryValues, string category)
@@ -206,27 +203,29 @@ public partial class IntroduccioNotes : System.Web.UI.Page
 
     protected void DropDownList7_SelectedIndexChanged(object sender, EventArgs e)
     {
-        String selected = DropDownList7.SelectedValue.ToString();
-        if (selected == "")
-        {
-            _where = "";
-            GridViewAlumnes.Visible = false;
-        }
-        else
-        {
-            Int32 id_uf = Convert.ToInt32(DropDownList6.SelectedValue);
-
-
-            _where = "it.ufs.id = " + id_uf;
-
-            EntityDataSourceAlumnes.Where = _where;
-        }
-
-        GridViewAlumnes.PageIndex = 0;
+        RefrescarGrid();
     }
     protected void DropDownList6_SelectedIndexChanged(object sender, EventArgs e)
     {
+        RefrescarGrid();
+    }
 
+    protected void GridViewAlumnes_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        GridViewRow row = GridViewAlumnes.Rows[e.RowIndex];
+
+        TextBox nota = ((TextBox)(row.Cells[5].FindControl("TextBoxNotes")));
+
+        Int32 id_uf = Convert.ToInt32(DropDownList6.SelectedValue);
+        Int32 id_avaluacio = Convert.ToInt32(DropDownList7.SelectedValue);
+        Int32 id_alumne =  Convert.ToInt32(row.Cells[1].Text.ToString());
+        Int32 nota_final = Convert.ToInt32(nota.Text.ToString());
+        BD.ModificarNota(id_uf, id_alumne, id_avaluacio, nota_final);
+
+    }
+
+    public void RefrescarGrid()
+    {
         String selected = DropDownList7.SelectedValue.ToString();
         if (selected == "")
         {
@@ -236,13 +235,42 @@ public partial class IntroduccioNotes : System.Web.UI.Page
         else
         {
             Int32 id_uf = Convert.ToInt32(DropDownList6.SelectedValue);
-
-
-            _where = "it.ufs.id = " + id_uf;
-
+            Int32 id_avaluacio = Convert.ToInt32(DropDownList7.SelectedValue);
+            List<alumnes> alumnes = BD.ConsultaCursar(id_uf);
+            if (alumnes.Count() == 0)
+            {
+                GridViewAlumnes.Visible = false;
+            }
+            else
+            {
+                GridViewAlumnes.Visible = true;
+            }
+            for (Int32 i = 0; i < alumnes.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    _where = "it.persones.id = " + alumnes[i].id;
+                }
+                else
+                {
+                    _where = _where + " or it.persones.id = " + alumnes[i].id;
+                }
+            }
             EntityDataSourceAlumnes.Where = _where;
+            for (Int32 i = 0; i < alumnes.Count(); i++)
+            {
+                List<avaluar> av = alumnes[i].avaluar.ToList();
+                Label nota = ((Label)(GridViewAlumnes.Rows[i].Cells[5].FindControl("LabelNota")));
+                nota.Text = "";
+                for (Int32 j = 0; j < av.Count(); j++)
+                {
+                    if (av[j].id_avaluacio == id_avaluacio)
+                    {
+                        nota.Text= av[j].nota.ToString();
+                    }
+                }
+            }
         }
-
         GridViewAlumnes.PageIndex = 0;
     }
 }

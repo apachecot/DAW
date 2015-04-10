@@ -98,6 +98,48 @@ public static class BD
         return (mensaje);
     }
 
+    public static string ModificarNota(int id_uf, int id_alumne,int id_avaluacio, int nota)
+    {
+        string mensaje = "";
+
+        var notas = (from c in contexto.avaluar
+
+                      where c.id_uf == id_uf 
+                      && c.id_alumne==id_alumne
+                      && c.id_avaluacio==id_avaluacio
+                      select c).ToList();
+        if (notas.Count != 0)
+        {
+            avaluar aval = notas.First();
+
+            aval.id_uf = id_uf;
+            aval.id_alumne = id_alumne;
+            aval.id_avaluacio = id_avaluacio;
+            aval.nota = nota;
+        }
+        else
+        {
+            avaluar aval = new avaluar();
+
+            aval.id_uf = id_uf;
+            aval.id_alumne = id_alumne;
+            aval.id_avaluacio = id_avaluacio;
+            aval.nota = nota;
+            contexto.avaluar.Add(aval);
+        }
+
+        try
+        {
+            contexto.SaveChanges();
+        }
+        catch (DbUpdateException ex)
+        {
+            SqlException sqlEx = (SqlException)ex.InnerException.InnerException;
+            mensaje = BDErrores.MensajeError(sqlEx);
+        }
+        return (mensaje);
+    }
+
     public static List<cursos> ConsultaCursos(int id)
     {
         var cursos = (from c in contexto.cursos
@@ -120,6 +162,24 @@ public static class BD
         moduls_prof modul = moduls.First();
         
         return modul;
+    }
+    public static List<alumnes> ConsultaCursar(int id_uf)
+    {
+        var alumnes = (from c in contexto.alumnes
+                      select c).ToList();
+        List<alumnes> alumnes_cursar=new List<alumnes>();
+        for (Int32 i = 0; i < alumnes.Count(); i++)
+        {
+            List<ufs> ufs_alumne=alumnes[i].ufs.ToList();
+            for (Int32 j = 0; j < ufs_alumne.Count(); j++)
+            {
+                if (ufs_alumne[j].id == id_uf)
+                {
+                    alumnes_cursar.Add(alumnes[i]);
+                }
+            }
+        }
+        return alumnes_cursar;
     }
     public static List<moduls_prof> ConsultaCursModulProf(int id)
     {

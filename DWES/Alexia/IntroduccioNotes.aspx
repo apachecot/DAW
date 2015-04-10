@@ -46,12 +46,36 @@
                 </div>
                 <div class="panel-body">
                     <div class="text-center">
-                        <asp:GridView ID="GridViewAlumnes" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceAlumnes" Width="100%" DataKeyNames="id">
+                        <asp:GridView ID="GridViewAlumnes" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceAlumnes" Width="100%" DataKeyNames="id" OnRowUpdating="GridViewAlumnes_RowUpdating">
                             <Columns>
-                                <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
-                                <asp:BoundField DataField="nom" HeaderText="nom" SortExpression="nom" />
-                                <asp:BoundField DataField="cognom1" HeaderText="cognom1" SortExpression="cognom1" />
-                                <asp:BoundField DataField="cognom2" HeaderText="cognom2" SortExpression="cognom2" />
+                                <asp:CommandField ShowEditButton="True" />
+                                <asp:BoundField DataField="id" HeaderStyle-CssClass="HideCell" HeaderText="id" ItemStyle-CssClass="HideCell" ReadOnly="True" SortExpression="id">
+                                <HeaderStyle CssClass="HideCell" />
+                                <ItemStyle CssClass="HideCell" />
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="Cognom 1" SortExpression="persones">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("persones.cognom1") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Cognom2" SortExpression="persones">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("persones.cognom2") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Nom" SortExpression="persones">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("persones.nom") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Notes">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="TextBoxNotes" runat="server"></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="LabelNota" runat="server"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <br />
@@ -61,7 +85,7 @@
             </asp:Panel>
             <!-- ModalPopupExtender -->
         </div>
-        <asp:EntityDataSource ID="EntityDataSourceAlumnes" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableDelete="True" EnableFlattening="False" EnableUpdate="True" EntitySetName="persones" Include="">
+        <asp:EntityDataSource ID="EntityDataSourceAlumnes" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableDelete="True" EnableFlattening="False" EnableUpdate="True" EntitySetName="alumnes" Include="persones,avaluar">
         </asp:EntityDataSource>
         <br>
     </asp:Panel>

@@ -1,0 +1,37 @@
+.bola1{
+background-color:green;
+}
+.bola2{
+background-color:blue;
+}
+.vacio{
+background-color:white;
+}
+.posible{
+background-color:orange;
+}
+.circulo { 
+   float:center;
+   width: 25px;   
+   height: 25px;
+   -moz-border-radius: 70px; 
+   -webkit-border-radius: 70px; 
+   border-radius: 70px;
+}
+.cuadrado {
+	float:left;
+	width: 30px;
+	height: 30px;
+	border: 2px solid;
+}
+.linea
+{
+	margin-left: auto;
+    margin-right: auto;
+	display:table;
+}
+.bloque
+{
+	display:inline-block;
+}
+

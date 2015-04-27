@@ -1,13 +1,15 @@
 var Config = (function () {
 
-		var debug=true;
-		var codigoAutomatico=false;
-		var codigoPrueba="11233";
+		var bola1amigasbola1=1;
+		var bola1amigasbola2=1;
+		var bola2amigasbola1=1;
+		var bola2amigasbola2=1;
 		
 		return {
-			debug: debug,
-			codigoPrueba: codigoPrueba,
-			codigoAutomatico: codigoAutomatico
+			bola1amigasbola1: bola1amigasbola1,
+			bola1amigasbola2: bola1amigasbola2,
+			bola2amigasbola1: bola2amigasbola1,
+			bola2amigasbola2: bola2amigasbola2
 		}
 
 }());

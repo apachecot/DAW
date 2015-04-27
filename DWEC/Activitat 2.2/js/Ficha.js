@@ -1,0 +1,6 @@
+var Ficha = (function () {
+
+		
+
+
+}());

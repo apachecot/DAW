@@ -17,12 +17,40 @@
 	<script type="text/javascript" src="js/Events.js"></script>
 	<script type="text/javascript" src="js/Tablero.js"></script>
   </head>
-  <body onload="jocui.EmpezarPartida()">
+  <body>
   <div class="clearfix">
 		<div class="col-md-6 column">
 			<h1>Els petits canvis son poderosos 2.2</h1>
 		</div>
 	</div>
 	<div id="tablero">
+	</div>
+	<div class="row clearfix caja">
+		<form id="formulario" class="clearfix form-horizontal">
+		<div class="form-group">
+		<div class="col-sm-10">
+		<div class='circulo bola1 bloque'></div>
+			<input id="inputTextBola1CercanaBola1" placeholder="Cercanas iguales" type="text">
+			<input id="inputTextBola1CercanaBola2" placeholder="Cercanas contrarias" type="text">
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="col-sm-10">
+		<div class='circulo bola2 bloque'></div>
+			<input id="inputTextBola2CercanaBola2" placeholder="Cercanas iguales" type="text">
+			<input id="inputTextBola2CercanaBola1" placeholder="Cercanas contrarias" type="text">
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="col-sm-10">
+		<div class='cuadrado'></div>
+			<input id="inputTextFilas" placeholder="Filas" type="text">
+			<input id="inputTextColumnas" placeholder="Columnas" type="text">
+		</div>
+		</div>
+	</form>
+	<p id="error" style="display:none" class="error bg-danger pError">Es necesario introducir un número de 0 a 5 en las fichas cercanas</p>
+	<p id="errorFilas" style="display:none" class="error bg-danger pError">Es necesario introducir un número más grande que 0 y más pequeño que 1.000 en el tablero</p>
+	<button id="buttonJugar" type="button" class="btn btn-warning btn-lg btn-block top20">Empezar a jugar</button>
 	</div>
 </html>   

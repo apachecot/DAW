@@ -4,12 +4,16 @@ background-color:green;
 .bola2{
 background-color:blue;
 }
-
 .vacio{
 background-color:white;
 }
 .posible{
 background-color:orange;
+}
+.infeliz{
+   text-align: center;
+   color: red;
+   background-image: url("../img/x.png");
 }
 .circulo { 
    float:center;
@@ -18,6 +22,7 @@ background-color:orange;
    -moz-border-radius: 70px; 
    -webkit-border-radius: 70px; 
    border-radius: 70px;
+
 }
 .cuadrado {
 	float:left;
@@ -34,5 +39,33 @@ background-color:orange;
 .bloque
 {
 	display:inline-block;
+}
+.caja{
+	border: 2px solid;
+	margin:10px;
+	padding:10px;
+	background: rgba(255, 255, 255, 0.5);
+}
+.pError{
+
+	margin-left:10px;
+	margin-right:10px;
+	
+}
+input{
+	margin-top:-10px;
+	margin-left:10px;
+	padding-right:20px;
+	border:2px solid;
+}
+.bola2muestra
+{
+	float:center;
+   width: 25px;   
+   height: 25px;
+   -moz-border-radius: 70px; 
+   -webkit-border-radius: 70px; 
+   border-radius: 70px;
+   background-color:blue;
 }
 

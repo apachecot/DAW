@@ -11,9 +11,14 @@ background-color:white;
 background-color:orange;
 }
 .infeliz{
-   text-align: center;
-   color: red;
-   background-image: url("../img/x.png");
+   background-image: url("../img/no_happy.png");
+   background-position: center; 
+   background-repeat: no-repeat;
+}
+.feliz{
+   background-image: url("../img/happy.gif");
+   background-position: center; 
+   background-repeat: no-repeat;
 }
 .circulo { 
    float:center;

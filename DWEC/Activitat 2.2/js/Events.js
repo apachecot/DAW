@@ -1,22 +1,31 @@
 var Events = (function () {
 		$(document).ready(function(){
-		$( "#buttonJugar" ).on("click",jocui.EmpezarPartida);
+		$( "#buttonJugar" ).on("click",joc.EmpezarPartida);
+		$( "#buttonJugarAleatorio" ).on("click",joc.EmpezarPartidaAleatorio);
 	});
 
 	   function ClickInfeliz()
 	   {
 			Tablero.casillaPulsada=$(this).attr( "id" );
 			Tablero.LimpiarPosibilidades();
-			Tablero.BuscarPosicionesLibres(Tablero.GetCasilla($(this).attr( "id" )).tipo);
+			if(Ficha.BuscarPosicionesLibres(Tablero.GetCasilla($(this).attr( "id" )).tipo)==0)
+			{
+				joc.MensajeIncorrecto();
+			}
 			jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);
 	   }
 	   function ClickPosible()
 	   {
-			Tablero.CambiarPosicion($(this).attr( "id" ));
+			Ficha.CambiarPosicion($(this).attr( "id" ));
 			Tablero.LimpiarPosibilidades();
-			Tablero.ComprobarEstados();
+			Ficha.ComprobarEstados();
 			jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);
+			if(Ficha.nInfelices==0)
+			{
+				joc.MensajeCorrecto();
+			}
 	   }
+
 	   
 	   return {
 	   

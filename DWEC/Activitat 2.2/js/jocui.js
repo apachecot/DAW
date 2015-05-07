@@ -16,20 +16,19 @@ var jocui = (function () {
 					}
 					if(tablero[i][j].tipo==1)
 					{
-						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo bola1 "+tablero[i][j].contenta+"'></div></div>");
+						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo bola1 "+tablero[i][j].contenta+"' draggable='true' ondragstart='start(event)' ondragend='end(event)'></div></div>");
 					}
 					if(tablero[i][j].tipo==2)
 					{
-						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo bola2 "+tablero[i][j].contenta+"'></div></div>");
+						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo bola2 "+tablero[i][j].contenta+"' draggable='true' ondragstart='start(event)' ondragend='end(event)'></div></div>");
 					}
 					if(tablero[i][j].tipo==3)
 					{
-						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo posible'></div></div>");
+						$("#linea"+i).append("<div class='cuadrado'><div id='"+id[i][j]+"' class='circulo posible' ondragenter='return enter(event)' ondragover='return over(event)' ondrop='return drop(event)'></div></div>");
 					}
 				}
 			}
-			$(".infeliz").on("click",Events.ClickInfeliz);
-			$(".posible").on("click",Events.ClickPosible);
+			$(".infeliz").on("mousedown",Events.ClickInfeliz);
 	   }
 	   
 	   

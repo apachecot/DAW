@@ -14,9 +14,9 @@ var Events = (function () {
 			}
 			jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);
 	   }
-	   function ClickPosible()
+	   function ClickPosible(id)
 	   {
-			Ficha.CambiarPosicion($(this).attr( "id" ));
+			Ficha.CambiarPosicion(id);
 			Tablero.LimpiarPosibilidades();
 			Ficha.ComprobarEstados();
 			jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);

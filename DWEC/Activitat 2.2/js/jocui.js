@@ -29,6 +29,7 @@ var jocui = (function () {
 				}
 			}
 			$(".infeliz").on("mousedown",Events.ClickInfeliz);
+			$(".infeliz").on("mouseup",Events.KeyUpLimpiar);
 	   }
 	   
 	   

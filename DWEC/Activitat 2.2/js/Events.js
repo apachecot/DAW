@@ -25,11 +25,18 @@ var Events = (function () {
 				joc.MensajeCorrecto();
 			}
 	   }
+	   function KeyUpLimpiar()
+	   {
+			Tablero.LimpiarPosibilidades();
+			Ficha.ComprobarEstados();
+			jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);
+	   }
 
 	   
 	   return {
 	   
 			ClickInfeliz: ClickInfeliz,
-			ClickPosible: ClickPosible
+			ClickPosible: ClickPosible,
+			KeyUpLimpiar: KeyUpLimpiar
 	   }
 }());

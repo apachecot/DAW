@@ -13,9 +13,6 @@ function start(e) {
 function end(e){
     e.target.style.opacity = ''; // Restaura la opacidad del elemento           
     e.dataTransfer.clearData("Data"); 
-	Tablero.LimpiarPosibilidades();
-	Ficha.ComprobarEstados();
-	jocui.PrintarTablero(Tablero.tablero,Tablero.tableroIds);
 	console.log("End: "+e.target.className);
 
 }

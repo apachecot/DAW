@@ -209,11 +209,6 @@ class ProductosController extends BaseController {
            $producto = Producto::getProducto($input['id_producto'])
                        ->update($modificacion);
 
-           
-
-            //$datos = $this->rellenarDatos($input['ciudad'], TRUE);
-
-            //return View::make('hotelesView', $datos);
             return Redirect::action('ProductosController@buscarProductos');
         }
 

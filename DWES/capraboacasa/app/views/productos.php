@@ -48,6 +48,7 @@
                           <tr>
                             <th></th>
                             <th>Descripción</th>
+                            <th>Precio</th>
                             <th>Subtipo</th>
                             <th>Tipo</th>
                             <th>Sección</th>
@@ -61,6 +62,7 @@
 
                                     echo '<td><img src="'.$producto->imagen_producto.'" height="42" width="42"></td>';
                                     echo '<td>'.$producto->desc_producto.'</td>';
+                                    echo '<td>'.$producto->precio_producto.' €</td>';
                                     echo '<td>'.$producto->subtipo->desc_subtipo.'</td>';
                                     echo '<td>'.$producto->subtipo->tipo->desc_tipo.'</td>';
                                     echo '<td>'.$producto->subtipo->tipo->seccion->desc_seccion.'</td>';
